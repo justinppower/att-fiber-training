@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AT&T Fiber Sales Training</title>
+<style>
+:root {
+  --att-blue: #009FDB;
+  --att-dark: #1a1a2e;
+  --att-darker: #0f0f1e;
+  --att-accent: #00C4B3;
+  --att-orange: #FF6B35;
+  --att-white: #f0f0f5;
+  --att-gray: #b0b0c0;
+  --card-bg: #1e1e35;
+  --card-border: #2a2a45;
+  --success: #4CAF50;
+  --warning: #FFC107;
+  --danger: #f44336;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--att-darker);
+  color: var(--att-white);
+  line-height: 1.7;
+}
+
+/* ── LOGIN SCREEN ── */
+#login-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--att-darker) 0%, #0a1628 50%, var(--att-darker) 100%);
+}
+
+.login-container {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 48px;
+  width: 420px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.login-container .logo {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--att-blue);
+  margin-bottom: 8px;
+}
+
+.login-container .subtitle {
+  color: var(--att-gray);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: var(--att-darker);
+  color: var(--att-white);
+  font-size: 1rem;
+  margin-bottom: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.login-container input:focus { border-color: var(--att-blue); }
+
+.login-container button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--att-blue), var(--att-accent));
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s;
+}
+
+.login-container button:hover { transform: translateY(-2px); }
+
+.login-error {
+  color: var(--danger);
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+
+/* ── MAIN APP ── */
+#app-container { display: none; }
+
+.app-header {
+  background: linear-gradient(135deg, var(--att-darker) 0%, #0a1628 100%);
+  border-bottom: 2px solid var(--att-blue);
+  padding: 0 24px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.app-header .logo-text {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--att-blue);
+}
+
+.app-header .brand {
+  color: var(--att-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-left: 12px;
+}
+
+.app-header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.agent-info {
+  color: var(--att-gray);
+  font-size: 0.95rem;
+}
+
+.agent-info strong {
+  color: var(--att-white);
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  background: var(--att-orange);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover { background: #ff5520; }
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--att-white);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.main-content {
+  display: flex;
+  min-height: calc(100vh - 70px);
+}
+
+/* ── SIDEBAR NAVIGATION ── */
+.sidebar {
+  width: 280px;
+  background: var(--att-dark);
+  border-right: 1px solid var(--card-border);
+  overflow-y: auto;
+  padding: 24px 0;
+}
+
+.sidebar-section {
+  margin-bottom: 32px;
+  padding: 0 16px;
+}
+
+.sidebar-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--att-orange);
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.nav-item {
+  padding: 12px 16px;
+  margin-bottom: 6px;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s;
+  font-size: 0.95rem;
+  color: var(--att-gray);
+}
+
+.nav-item:hover {
+  background: rgba(0, 159, 219, 0.1);
+  color: var(--att-white);
+}
+
+.nav-item.active {
+  background: rgba(0, 159, 219, 0.2);
+  border-left-color: var(--att-blue);
+  color: var(--att-blue);
+  font-weight: 600;
+}
+
+/* ── CONTENT AREA ── */
+.content-area {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.page-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--att-blue);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  color: var(--att-gray);
+  font-size: 1rem;
+  margin-bottom: 32px;
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.card h2 {
+  color: var(--att-accent);
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+
+.card h3 {
+  color: var(--att-blue);
+  font-size: 1.1rem;
+  margin: 20px 0 12px 0;
+}
+
+.card p { margin-bottom: 12px; }
+
+.card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.95rem;
+}
+
+.card table th {
+  background: rgba(0, 159, 219, 0.15);
+  color: var(--att-blue);
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--att-blue);
+}
+
+.card table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.card table tr:hover {
+  background: rgba(0, 159, 219, 0.05);
+}
+
+.highlight {
+  background: rgba(0, 196, 179, 0.15);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--att-accent);
+  font-weight: 600;
+}
+
+.fire-alarm-rule {
+  background: rgba(255, 107, 53, 0.15);
+  border-left: 4px solid var(--att-orange);
+  padding: 16px;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+.fire-alarm-rule strong {
+  color: var(--att-orange);
+}
+
+/* ── QUIZ ── */
+.quiz-container {
+  max-width: 900px;
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--card-border);
+}
+
+.quiz-progress {
+  font-size: 0.95rem;
+  color: var(--att-gray);
+}
+
+.quiz-progress .current {
+  color: var(--att-white);
+  font-weight: 600;
+}
+
+.question-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.question-number {
+  color: var(--att-accent);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.question-text {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: var(--att-white);
+  font-weight: 500;
+}
+
+.answer-option {
+  padding: 14px 16px;
+  background: rgba(0, 159, 219, 0.05);
+  border: 2px solid var(--card-border);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.answer-option:hover {
+  background: rgba(0, 159, 219, 0.1);
+  border-color: var(--att-blue);
+}
+
+.answer-option.selected {
+  background: rgba(0, 159, 219, 0.2);
+  border-color: var(--att-blue);
+}
+
+.answer-option.correct {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: var(--success);
+}
+
+.answer-option.incorrect {
+  background: rgba(244, 67, 54, 0.2);
+  border-color: var(--danger);
+}
+
+.answer-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--att-gray);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.answer-option.selected .answer-radio {
+  border-color: var(--att-blue);
+}
+
+.answer-radio::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--att-blue);
+  border-radius: 50%;
+  display: none;
+}
+
+.answer-option.selected .answer-radio::after {
+  display: block;
+}
+
+/* ── BUTTONS ── */
+.btn-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  min-width: 140px;
+  text-align: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--att-blue), var(--att-accent));
+  color: #fff;
+}
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 159, 219, 0.4); }
+
+.btn-secondary {
+  background: rgba(0, 159, 219, 0.1);
+  color: var(--att-blue);
+  border: 1px solid var(--att-blue);
+}
+
+.btn-secondary:hover { background: rgba(0, 159, 219, 0.2); }
+
+.btn-danger {
+  background: rgba(244, 67, 54, 0.1);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+
+.btn-danger:hover { background: rgba(244, 67, 54, 0.2); }
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── RESULTS SCREEN ── */
+.results-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.results-card {
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.results-title {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: var(--att-white);
+}
+
+.results-score {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--att-blue);
+  margin: 20px 0;
+}
+
+.results-message {
+  color: var(--att-gray);
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+}
+
+.results-message.pass {
+  color: var(--success);
+}
+
+.results-message.fail {
+  color: var(--danger);
+}
+
+.results-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+  padding: 16px;
+  background: rgba(0, 159, 219, 0.05);
+  border-radius: 8px;
+}
+
+.results-detail {
+  text-align: center;
+}
+
+.results-detail-label {
+  color: var(--att-gray);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.results-detail-value {
+  color: var(--att-white);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* ── PROGRESS DASHBOARD ── */
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.progress-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.progress-card.completed {
+  border-color: var(--success);
+  background: rgba(76, 175, 80, 0.05);
+}
+
+.progress-card.failed {
+  border-color: var(--danger);
+  background: rgba(244, 67, 54, 0.05);
+}
+
+.progress-label {
+  color: var(--att-gray);
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.progress-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--att-white);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--card-border);
+  border-radius: 4px;
+  margin: 12px 0;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--att-blue), var(--att-accent));
+  transition: width 0.3s;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .sidebar { width: 220px; }
+  .content-area { padding: 24px; }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  .sidebar {
+    position: fixed;
+    left: -280px;
+    top: 70px;
+    height: calc(100vh - 70px);
+    z-index: 99;
+    transition: left 0.3s;
+  }
+  .sidebar.active { left: 0; }
+  .main-content { flex-direction: column; }
+  .content-area {
+    padding: 20px;
+  }
+  .page-title { font-size: 1.6rem; }
+  .progress-grid {
+    grid-template-columns: 1fr;
+  }
+  .quiz-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-container">
+    <div class="logo">AT&T</div>
+    <div class="subtitle">Fiber Sales Training</div>
+    <input type="text" id="agent-name" placeholder="Full Name (First Last)" autocomplete="off">
+    <input type="password" id="agent-password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <div id="login-error" class="login-error"></div>
+  </div>
+</div>
+
+<!-- MAIN APPLICATION -->
+<div id="app-container">
+  <!-- HEADER -->
+  <div class="app-header">
+    <div>
+      <span class="logo-text">AT&T</span>
+      <span class="brand">Fiber Training</span>
+    </div>
+    <div class="app-header-right">
+      <div class="agent-info">
+        Welcome, <strong id="agent-display"></strong>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Overview</div>
+        <div class="nav-item active" onclick="showPage('overview')">📊 Dashboard</div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Training Days</div>
+        <div class="nav-item" onclick="showPage('day1')">Day 1: Product Knowledge</div>
+        <div class="nav-item" onclick="showPage('day2')">Day 2: Discovery & Gatekeeper</div>
+        <div class="nav-item" onclick="showPage('day3')">Day 3: Solution Presentation</div>
+        <div class="nav-item" onclick="showPage('day4')">Day 4: Objection Handling</div>
+        <div class="nav-item" onclick="showPage('day5')">Day 5: Certification</div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Resources</div>
+        <div class="nav-item" onclick="showPage('quick-ref')">Quick Reference Card</div>
+        <div class="nav-item" onclick="showPage('trainer-key')">Trainer Answer Key</div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-area">
+
+      <!-- OVERVIEW PAGE -->
+      <div id="overview" class="page active">
+        <h1 class="page-title">5-Day Sales Training Program</h1>
+        <p class="page-subtitle">AT&T Fiber Sales Training — Master the complete product portfolio and close more deals</p>
+
+        <div class="card">
+          <h2>📈 Your Progress</h2>
+          <div class="progress-grid" id="progress-display"></div>
+        </div>
+
+        <div class="card">
+          <h2>🎯 Training Overview</h2>
+          <p>This comprehensive 5-day training program equips you with everything needed to sell AT&T Fiber products with confidence:</p>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li><strong>Day 1:</strong> Master the complete AT&T Fiber product portfolio (ADI, ADIVB, ABV, APBA, O@H, Dynamic Defense, ABF, AIA, AWB)</li>
+            <li><strong>Day 2:</strong> Break through gatekeepers and uncover customer needs through discovery</li>
+            <li><strong>Day 3:</strong> Present solutions using SPIN Selling and build compelling proposals</li>
+            <li><strong>Day 4:</strong> Handle objections with approved responses and close deals</li>
+            <li><strong>Day 5:</strong> Complete role-play scenarios and pass the final certification exam</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>✅ Getting Started</h2>
+          <p>Navigate to each day's content in the sidebar. Complete the lessons, study the material, and take the quizzes when ready. You must pass each quiz with the required percentage to advance.</p>
+          <p style="margin-top: 12px; color: var(--att-accent);"><strong>Pass Requirements:</strong> Day 1, 2, 4 Quizzes: 80% | Day 5 Final Exam: 85%</p>
+        </div>
+      </div>
+
+      <!-- DAY 1 PAGE -->
+      <div id="day1" class="page">
+        <h1 class="page-title">Day 1: Product Knowledge Foundation</h1>
+        <p class="page-subtitle">Master the AT&T Fiber business product portfolio and positioning strategies</p>
+
+        <div class="card">
+          <h2>SESSION 1: The Complete AT&T Business Product Portfolio</h2>
+          <p>AT&T offers a comprehensive portfolio of nine core business products designed to meet diverse customer needs:</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Abbreviation</th>
+                <th>What It Is</th>
+                <th>Key Features</th>
+                <th>Best For</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AT&T Dedicated Internet</td>
+                <td><span class="highlight">ADI</span></td>
+                <td>Dedicated symmetrical internet, 10 Mbps-1 Tbps</td>
+                <td>Ethernet/private line, managed router option, SDN enabled, 24/7 monitoring, BusinessCenter portal</td>
+                <td>Businesses needing guaranteed symmetrical bandwidth</td>
+              </tr>
+              <tr>
+                <td>AT&T Dedicated Internet with Voice Bundle</td>
+                <td><span class="highlight">ADIVB</span></td>
+                <td>Integrated internet + VoIP package</td>
+                <td>Single contract, one invoice, IP Flexible Reach (unlimited local/on-net calling, 300 min offnet LD), managed router option</td>
+                <td>Businesses wanting internet + voice in one package</td>
+              </tr>
+              <tr>
+                <td>AT&T Business Voice</td>
+                <td><span class="highlight">ABV</span></td>
+                <td>POTS replacement, one-box voice + utility lines</td>
+                <td>Analog phone/utility support, 24/7 monitoring, AT&T technician install, 24hr battery backup, wireless failover, Digital Phone Call Protect</td>
+                <td>Businesses with fax, fire alarms, elevators, security lines</td>
+              </tr>
+              <tr>
+                <td>AT&T Phone for Business Advanced</td>
+                <td><span class="highlight">APBA VAB-1</span></td>
+                <td>Cellular/PSTN/MFVN communications device</td>
+                <td>Analog POTS replacement, alarm communication, legacy fax, elevator/paging lines, 24hr battery failover, LTE backup</td>
+                <td>Businesses with legacy analog infrastructure needing modernization</td>
+              </tr>
+              <tr>
+                <td>AT&T Office@Hand</td>
+                <td><span class="highlight">O@H</span></td>
+                <td>Cloud-based IP business communication</td>
+                <td>Unlimited US calling, extensions, HD video conferencing, screen sharing, app integrations (Salesforce, Office 365), call recording, vanity/toll-free numbers</td>
+                <td>Businesses wanting unified communications across devices</td>
+              </tr>
+              <tr>
+                <td>AT&T Dynamic Defense</td>
+                <td><span class="highlight">Dynamic Defense</span></td>
+                <td>Network security embedded in AT&T infrastructure</td>
+                <td>AT&T threat intelligence, 24/7/365 monitoring, same-day deployment, customizable security policies, no termination charges</td>
+                <td>Any business on ADI needing cybersecurity protection</td>
+              </tr>
+              <tr>
+                <td>AT&T Business Fiber</td>
+                <td><span class="highlight">ABF</span></td>
+                <td>100% fiber broadband internet</td>
+                <td>Fastest speeds, symmetrical, no annual contract, no equipment fees for Wi-Fi, no data caps, voice and security add-ons</td>
+                <td>Small-medium businesses wanting fast reliable internet</td>
+              </tr>
+              <tr>
+                <td>AT&T Internet Air for Business</td>
+                <td><span class="highlight">AIA</span></td>
+                <td>Fixed wireless internet over 5G/4G</td>
+                <td>No speed/data caps, no overage fees, self-setup, Premium option with 250GB Turbo data</td>
+                <td>Backup internet or areas without wired options</td>
+              </tr>
+              <tr>
+                <td>AT&T Wireless Broadband</td>
+                <td><span class="highlight">AWB</span></td>
+                <td>Cellular broadband service</td>
+                <td>Unlimited data, fixed monthly rate, 5G/5G+ access, designed for POS/ATM/business-critical apps</td>
+                <td>Businesses needing cellular backup or on-the-go connectivity</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>CRITICAL: The FIRE ALARM Rule</h2>
+          <div class="fire-alarm-rule">
+            <strong>If a customer mentions FIRE ALARM systems, APBA (AT&T Phone for Business Advanced) is the ONLY solution.</strong><br><br>
+            Fire alarms require analog connectivity that only APBA provides. No exceptions. No substitutes. APBA has fire alarm certification built in. This is non-negotiable for compliance and safety.
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>SESSION 2: Critical Product Details</h2>
+
+          <h3>ADI Speed Tiers & Minimums</h3>
+          <p><strong>IMPORTANT:</strong> The <span class="highlight">MINIMUM sellable ADI speed is 10 Mbps</span>, not 1.5 Mbps. This is a critical distinction from legacy copper offerings.</p>
+
+          <h3>Managed vs Unmanaged Routers</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Wi-Fi Provision</th>
+                <th>Management</th>
+                <th>Customer Responsibility</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Managed Router</strong></td>
+                <td><span class="highlight">NO Wi-Fi</span> — Customer must provide their own</td>
+                <td>AT&T manages, monitors, updates</td>
+                <td>Just plug in and use</td>
+              </tr>
+              <tr>
+                <td><strong>Unmanaged Router</strong></td>
+                <td><span class="highlight">NO Wi-Fi</span> — Customer provides own router for Wi-Fi</td>
+                <td>Customer manages everything</td>
+                <td>Full control and customization</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="margin-top: 16px; color: var(--att-orange); font-weight: 600;">⚠️ CRITICAL: Neither managed nor unmanaged routers provide Wi-Fi. Customers MUST provision their own Wi-Fi solution if they want wireless connectivity.</p>
+
+          <h3>Product-to-Service Line Mapping</h3>
+          <p>When a customer mentions what they need, use this mapping to recommend the right product:</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Service Line / Need</th>
+                <th>Recommended Product</th>
+                <th>Why</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Fire Alarm</strong></td>
+                <td><span class="highlight">APBA (ONLY)</span></td>
+                <td>Fire alarm certification required — no alternatives</td>
+              </tr>
+              <tr>
+                <td><strong>Fax Machine</strong></td>
+                <td>APBA (preferred) or ABV</td>
+                <td>Analog support essential for legacy equipment</td>
+              </tr>
+              <tr>
+                <td><strong>Elevator Control</strong></td>
+                <td><span class="highlight">APBA</span></td>
+                <td>Elevator systems require analog connectivity</td>
+              </tr>
+              <tr>
+                <td><strong>Point of Sale (POS)</strong></td>
+                <td>APBA or ADI</td>
+                <td>Reliability critical for retail operations</td>
+              </tr>
+              <tr>
+                <td><strong>General Voice</strong></td>
+                <td>ADIVB or O@H + ADI</td>
+                <td>Modern VoIP solution bundled or separate</td>
+              </tr>
+              <tr>
+                <td><strong>Internet Only</strong></td>
+                <td>ADI, ABF, or AIA</td>
+                <td>Choose by speed/reliability needs</td>
+              </tr>
+              <tr>
+                <td><strong>Security (Network)</strong></td>
+                <td>Dynamic Defense (add-on to ADI)</td>
+                <td>Advanced threat protection</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Copper-to-Fiber Transition Messaging</h3>
+          <p>Key talking points when addressing copper service concerns:</p>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li><strong>"Copper is being phased out"</strong> — AT&T is retiring the legacy copper network in favor of modern fiber infrastructure</li>
+            <li><strong>"Act now for promotional rates"</strong> — Current promotional pricing is available to customers transitioning during this window</li>
+            <li><strong>"Future-proof your business"</strong> — Fiber is the infrastructure of the future; copper will become increasingly unreliable and costly</li>
+            <li><strong>"Avoid service disruption"</strong> — Proactive transition now prevents forced migration later when copper lines are decommissioned</li>
+          </ul>
+
+          <h3>O@H Licensing Model</h3>
+          <p>Office@Hand uses a <span class="highlight">per-user licensing model</span>: One license = one phone number that can ring on multiple devices (desk phone, mobile app, softphone). Each additional user requires an additional license.</p>
+
+          <h3>ABF (Business Fiber) Key Differentiators</h3>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li>100% symmetrical fiber speeds</li>
+            <li>No annual contract requirement</li>
+            <li>No equipment fees for Wi-Fi capability</li>
+            <li>No data caps</li>
+            <li>Compatible with voice and security add-ons</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>📝 Day 1 Quiz</h2>
+          <p>Test your knowledge of the AT&T Fiber product portfolio. Pass mark: <span class="highlight">80%</span> (16 out of 20 questions)</p>
+          <button class="btn btn-primary" onclick="renderQuiz('day1-quiz')">Start Day 1 Quiz</button>
+        </div>
+      </div>
+
+      <!-- DAY 2 PAGE -->
+      <div id="day2" class="page">
+        <h1 class="page-title">Day 2: Discovery & Gatekeeper Mastery</h1>
+        <p class="page-subtitle">Master the art of breaking through gatekeepers and uncovering customer needs</p>
+
+        <div class="card">
+          <h2>SESSION 1: Mastering Gatekeeper Communication</h2>
+          <p><strong>Objective:</strong> Present yourself as someone who belongs in the conversation, make their job easier, be confident/concise/non-salesy, give clear reason to help.</p>
+          <p style="margin-top: 12px;"><strong>Remember:</strong> Gatekeepers block salespeople, not professionals who sound relevant and respectful.</p>
+
+          <h3>The Right Approach</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Technique</th>
+                <th>How to Use It</th>
+                <th>Example Script</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Assumptive Tone</strong></td>
+                <td>Speak as if the call is expected</td>
+                <td>"Hi, this is Jordan from Atlas. Is Maria available?"</td>
+              </tr>
+              <tr>
+                <td><strong>Use Their Name</strong></td>
+                <td>Creates rapport and cooperation</td>
+                <td>"Sarah, appreciate your help—can you connect me with John?"</td>
+              </tr>
+              <tr>
+                <td><strong>Don't Sell to the Gatekeeper</strong></td>
+                <td>Keep it short and neutral</td>
+                <td>"It's regarding a project with their department."</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Advanced Gatekeeper Techniques</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Technique</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Help Frame</strong></td>
+                <td>"I'm hoping you can help me get to the person who oversees operations."</td>
+              </tr>
+              <tr>
+                <td><strong>Pattern Interrupt</strong></td>
+                <td>"Quick question—can you point me in the right direction? I don't want to waste your time."</td>
+              </tr>
+              <tr>
+                <td><strong>Higher-Authority Tone</strong></td>
+                <td>"Could you connect me with Mark? I'm following up from earlier."</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Handling Gatekeeper Objections</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Objection</th>
+                <th>Your Response</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>"What is this regarding?"</td>
+                <td>"It's about an initiative their team is involved in." / "It's a quick matter related to their department."</td>
+              </tr>
+              <tr>
+                <td>"Email them instead"</td>
+                <td>"Sure. Before I send it, what's the best way to make sure it actually reaches them—short emails or direct calls?"</td>
+              </tr>
+              <tr>
+                <td>"They're busy"</td>
+                <td>"I understand. When's the best time to reach them? I'll keep this brief."</td>
+              </tr>
+              <tr>
+                <td>"We're not interested"</td>
+                <td>"I appreciate that. This is actually time-sensitive regarding AT&T services. Can you get me 30 seconds with them?"</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="margin-top: 16px;"><strong>Build a Gatekeeper Profile:</strong> Track name, communication style, who they protect, best times to reach them. This intelligence pays dividends over time.</p>
+        </div>
+
+        <div class="card">
+          <h2>SESSION 2: Uncovering Customer Needs Through Discovery</h2>
+          <p><strong>Objective:</strong> Understand pain points and qualify fit for solutions.</p>
+
+          <h3>Key Focus Areas</h3>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li>Current infrastructure and services</li>
+            <li>Bandwidth and speed requirements</li>
+            <li>Business needs and growth plans</li>
+            <li>Pain points and service gaps</li>
+            <li>Budget and timeline for changes</li>
+            <li>Decision-makers and influencers</li>
+          </ul>
+
+          <h3>Discovery Questions by Category</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Questions to Ask</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Current Setup</strong></td>
+                <td>"Describe your current service and its limitations. What's working well? What's frustrating?"</td>
+              </tr>
+              <tr>
+                <td><strong>Pain Points</strong></td>
+                <td>"What are your biggest challenges related to network performance, reliability, or cost?"</td>
+              </tr>
+              <tr>
+                <td><strong>Future Needs</strong></td>
+                <td>"What are your service requirements now, and how do you anticipate those changing in 1-3 years?"</td>
+              </tr>
+              <tr>
+                <td><strong>Budget</strong></td>
+                <td>"What is your budget for a network upgrade? Are you looking to reduce costs or invest in better service?"</td>
+              </tr>
+              <tr>
+                <td><strong>Infrastructure Inventory</strong></td>
+                <td>"What services do you currently have? Do you use alarms, fax, phones, internet, elevators, POS systems?"</td>
+              </tr>
+              <tr>
+                <td><strong>Decision Authority</strong></td>
+                <td>"Are you the decision-maker, or is there someone else involved in this type of decision?"</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Mastering Active Listening</h3>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li><strong>Pay attention to verbal and nonverbal cues</strong> — Listen for frustration, enthusiasm, hesitation</li>
+            <li><strong>Add value to the call</strong> — Provide insights, not just questions</li>
+            <li><strong>Be professional and empathetic</strong> — Show genuine interest in solving their problems</li>
+            <li><strong>Summarize to confirm understanding</strong> — "What I'm hearing is that you need better uptime. Is that correct?"</li>
+            <li><strong>Build trust through consistency</strong> — Follow through on what you say you'll do</li>
+            <li><strong>Document everything</strong> — Write down specifics for accuracy and future reference</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>📝 Day 2 Quiz</h2>
+          <p>Test your gatekeeper and discovery mastery. Pass mark: <span class="highlight">80%</span> (12 out of 15 questions)</p>
+          <button class="btn btn-primary" onclick="renderQuiz('day2-quiz')">Start Day 2 Quiz</button>
+        </div>
+      </div>
+
+      <!-- DAY 3 PAGE -->
+      <div id="day3" class="page">
+        <h1 class="page-title">Day 3: Solution Presentation & Call Flow</h1>
+        <p class="page-subtitle">Master SPIN Selling and close with confidence</p>
+
+        <div class="card">
+          <h2>SESSION 1: The SPIN Selling Framework</h2>
+          <p>SPIN is a consultative selling approach that guides customers to understand their own needs and the value of your solution.</p>
+
+          <h3>The Four SPIN Stages</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Stage</th>
+                <th>Definition</th>
+                <th>Goal</th>
+                <th>Example Question</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Situation</strong></td>
+                <td>Understand the customer's current state</td>
+                <td>Establish facts about their business and current setup</td>
+                <td>"Tell me about your current phone setup and internet provider."</td>
+              </tr>
+              <tr>
+                <td><strong>Problem</strong></td>
+                <td>Identify their challenges and difficulties</td>
+                <td>Uncover pain points they experience today</td>
+                <td>"What challenges are you facing with downtime or call quality?"</td>
+              </tr>
+              <tr>
+                <td><strong>Implication</strong></td>
+                <td>Explore consequences of their problems</td>
+                <td>Help them recognize the business impact of inaction</td>
+                <td>"How does this downtime impact your operations and revenue?"</td>
+              </tr>
+              <tr>
+                <td><strong>Need-Payoff</strong></td>
+                <td>Help them envision the value of a solution</td>
+                <td>Build desire for a solution that solves their problems</td>
+                <td>"Would a solution that guarantees 99.9% uptime help your business?"</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>SPIN Questions by Product Category</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>SPIN Stage</th>
+                <th>Internet (ADI/ABF)</th>
+                <th>Voice (ABV/ADIVB/O@H)</th>
+                <th>Security (Dynamic Defense)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Situation</strong></td>
+                <td>What speeds are you running? How many users?</td>
+                <td>How many phone lines do you have? What's your call volume?</td>
+                <td>What security tools are in place today?</td>
+              </tr>
+              <tr>
+                <td><strong>Problem</strong></td>
+                <td>Are you experiencing slow uploads or connectivity issues?</td>
+                <td>Do you have dropped calls or poor quality?</td>
+                <td>Are you concerned about data breaches or threats?</td>
+              </tr>
+              <tr>
+                <td><strong>Implication</strong></td>
+                <td>How does slow connectivity affect productivity?</td>
+                <td>What's the business impact of missed calls?</td>
+                <td>What would a breach cost your business?</td>
+              </tr>
+              <tr>
+                <td><strong>Need-Payoff</strong></td>
+                <td>Would reliable fiber with symmetrical speeds help?</td>
+                <td>Would crystal-clear voice improve satisfaction?</td>
+                <td>Would advanced encryption protect critical data?</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>SESSION 2: Building Compelling Proposals</h2>
+
+          <h3>Key Elements of a Strong Proposal</h3>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li><strong>Customized to their needs</strong> — Address their specific challenges, not a generic pitch</li>
+            <li><strong>Cost-benefit analysis</strong> — Show the Monthly Recurring Cost (MRC) vs. value delivered</li>
+            <li><strong>Specific problem-solution connection</strong> — Make explicit how the solution solves their stated problems</li>
+            <li><strong>Scalability statement</strong> — Show how the solution grows with their business</li>
+            <li><strong>Timeline and next steps</strong> — Clear path to implementation</li>
+          </ul>
+
+          <h3>Key Benefits & Talking Points</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Benefit</th>
+                <th>Talking Point</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Reliability</strong></td>
+                <td>"Uptime guarantee — fiber doesn't degrade over distance like copper does. You get consistent performance."</td>
+              </tr>
+              <tr>
+                <td><strong>Security</strong></td>
+                <td>"Advanced encryption and network protection with Dynamic Defense. Your data stays secure 24/7/365."</td>
+              </tr>
+              <tr>
+                <td><strong>Scalability</strong></td>
+                <td>"Adapts to your future growth — scales from 10 Mbps to 1 Tbps as your business expands."</td>
+              </tr>
+              <tr>
+                <td><strong>Speed</strong></td>
+                <td>"Ultra-low latency for real-time applications. Symmetrical upload/download means all employees can work efficiently."</td>
+              </tr>
+              <tr>
+                <td><strong>Simplicity</strong></td>
+                <td>"Single contract, one invoice, one point of contact for support. No juggling multiple vendors."</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Value Proposition Examples</h3>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li>"Eliminate downtime and boost productivity with our ultra-reliable Dedicated Fiber connection."</li>
+            <li>"Future-proof your business with a scalable solution that grows from 10 Mbps to 1 Gbps and beyond."</li>
+            <li>"Enhance security and compliance with robust network protection built into your infrastructure."</li>
+            <li>"Simplify your vendor relationships—one contract, one invoice, one team handling everything."</li>
+          </ul>
+
+          <h3>MRC (Monthly Recurring Cost) Positioning</h3>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li><strong>Present pricing clearly and confidently</strong> — Don't apologize for the cost</li>
+            <li><strong>Frame as an investment</strong> — Show ROI through improved productivity, reduced downtime, better security</li>
+            <li><strong>Reference their pain points</strong> — "You mentioned downtime costs you about $2,000 per hour. This solution prevents that."</li>
+            <li><strong>Compare to alternatives</strong> — "For this level of reliability, competitive solutions cost 30% more."</li>
+            <li><strong>Highlight what's included</strong> — "This includes 24/7 monitoring, technical support, and equipment."</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>SESSION 3: Call Flow Mastery</h2>
+          <p><strong>The complete call flow:</strong> Opener → Discovery → Value Presentation → Next Steps</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Stage</th>
+                <th>Objective</th>
+                <th>Key Actions</th>
+                <th>Example Language</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Opener</strong></td>
+                <td>Build rapport, establish credibility</td>
+                <td>Introduce yourself, reference their business, state purpose</td>
+                <td>"Hi Jennifer, this is Sarah from AT&T. We work with retailers like yours to reduce downtime costs."</td>
+              </tr>
+              <tr>
+                <td><strong>Discovery</strong></td>
+                <td>Uncover needs, ask SPIN questions</td>
+                <td>Listen actively, take notes, ask follow-up questions</td>
+                <td>"Tell me about your current internet provider. How often do you experience outages?"</td>
+              </tr>
+              <tr>
+                <td><strong>Value Presentation</strong></td>
+                <td>Connect solution to their needs</td>
+                <td>Reference what they told you, show how ADI solves their problem</td>
+                <td>"Based on what you've told me, ADI with 24/7 monitoring would eliminate those outages."</td>
+              </tr>
+              <tr>
+                <td><strong>Next Steps</strong></td>
+                <td>Move toward decision</td>
+                <td>Propose a follow-up call, site survey, or decision timeline</td>
+                <td>"Let's get you a formal proposal by Friday. Does Tuesday work for a brief call to review?"</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>The Multi-Call Closer Sales Structure</h3>
+          <p>Many deals require multiple touches before closing:</p>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li><strong>Appointment Setter Call:</strong> Initial discovery, qualify opportunity, get commitment for closer call</li>
+            <li><strong>Closer Call #1:</strong> Deeper discovery, present comprehensive solution, build business case</li>
+            <li><strong>Closer Call #2 (if needed):</strong> Address remaining objections, negotiate terms, close deal</li>
+            <li><strong>Implementation Call:</strong> Confirm details, next steps, timeline</li>
+          </ul>
+
+          <h3>Closer Sales Call Opening Script</h3>
+          <p style="margin-top: 12px;">When you take over from the appointment setter:</p>
+          <p style="margin-top: 12px; font-style: italic;">"Hi [Name], this is [Your Name] from AT&T. Sarah reached out about improving your network reliability. I've reviewed what she discussed with you, and I wanted to dive deeper into your specific situation and show you exactly how we can eliminate those downtime issues. Do you have 15 minutes?"</p>
+        </div>
+      </div>
+
+      <!-- DAY 4 PAGE -->
+      <div id="day4" class="page">
+        <h1 class="page-title">Day 4: Objection Handling & Closing Mastery</h1>
+        <p class="page-subtitle">Master approved objection responses and close with confidence</p>
+
+        <div class="card">
+          <h2>SESSION 1: The Complete Objection Handbook</h2>
+          <p>Master these approved responses to handle the most common objections. Use these exact frameworks.</p>
+
+          <h3>Objection 1: "You are not AT&T. I only want to speak to them directly."</h3>
+          <p><strong>Approved Response A:</strong> "You're right, we are not AT&T. I'm with the AT&T Alliance Channel, a certified Solution Provider offering you personalized support. Everything we do, we do directly with AT&T. We're an added layer of expertise to make your transition smooth."</p>
+          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "I completely understand. We're not AT&T, but we're a certified AT&T partner. Think of us like an AT&T specialist—we handle the details so AT&T's team focuses on bigger accounts. You get faster service and better support."</p>
+
+          <h3>Objection 2: "I already have fiber."</h3>
+          <p><strong>Approved Response A:</strong> "We reached out because your account still shows no active fiber service. With your authorization, we can verify if your account has been migrated and what services are actually live."</p>
+          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "That's great if you do. Let me verify that for you. I'm showing here that you still have an active account on the legacy copper network. Let's confirm what's actually active and make sure you're on the fastest service available."</p>
+
+          <h3>Objection 3: "I'm not interested in switching."</h3>
+          <p><strong>Approved Response A:</strong> "I understand. Here's why I'm calling—AT&T is phasing out copper services. Copper is becoming obsolete and more costly to maintain, which may lead to further price increases. The transition to fiber now lets you lock in promotional rates."</p>
+          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "I respect that. The reality is copper is no longer going to be working in the near future. By doing this transition now, you get a future-ready service while taking advantage of our promotional rates. Waiting means paying more later."</p>
+
+          <h3>Objection 4: "If I lose internet/electricity, my phones will go down."</h3>
+          <p><strong>Approved Response A:</strong> "Great question. We have backup options that will keep your services up and running, even during outages. That's actually one of the big advantages of upgrading."</p>
+          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "That's exactly why we recommend APBA with 24HR battery backup and LTE failover. Your phones stay up. Plus, with Office@Hand, you can answer on every device, even your personal cell phone. No downtime."</p>
+
+          <h3>Objection 5: "I already have an AT&T representative."</h3>
+          <p><strong>Approved Response A:</strong> "I'm glad you have an assigned rep. We're not trying to replace them—we want to provide extra support to you and your rep. Think of us as additional bandwidth for your account."</p>
+          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "That's excellent. My role is to handle the fiber transition specifically. After we get you set up and trained, you can continue working with your rep on everything else. We're here to make the transition seamless."</p>
+
+          <h3>Objection 6: "I'm planning to switch providers."</h3>
+          <p><strong>Approved Response A:</strong> "I appreciate your honesty. What's the main reason you're looking to switch away from AT&T? What concerns have you had?"</p>
+          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "Let me take a look into your account. I don't think you're taking advantage of our new fiber speeds, pricing, and packages. Many customers considering switching don't realize what's available to them now."</p>
+
+          <h3>Objection 7: "I'm already in the process of switching."</h3>
+          <p><strong>Approved Response A:</strong> "I understand. Just to clarify, which service are you switching to?"</p>
+          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "Can you help me understand what you're switching to and why? There may be options within AT&T that give you what you're looking for at a better rate."</p>
+
+          <h3>Objection 8: "Don't have AT&T line/copper service."</h3>
+          <p><strong>Approved Response A:</strong> "I understand. Our records show an AT&T service at your location. Let me verify the details and confirm we have the right account."</p>
+          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "That's possible. Even if you don't have AT&T now, this is actually a good time to discuss switching to us. We have aggressive pricing to bring you over from your current provider."</p>
+
+          <h3>Objection 9: "Don't need/want fiber."</h3>
+          <p><strong>Approved Response A:</strong> "I hear you. The reality is copper is being retired. Even if you're happy now, copper's going away, so planning your transition now prevents service disruption."</p>
+          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "Fiber is completely compatible with your current infrastructure. You won't see changes in how you operate—just better speed, reliability, and security. The infrastructure underneath just gets better."</p>
+
+          <h3>Objection 10: "Is this mandatory?"</h3>
+          <p><strong>Approved Response A:</strong> "Not yet, but copper is being retired. The smart move is transitioning now while you have promotional pricing and avoid forced migration later."</p>
+          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "Not immediately, but the timeline is firm. Copper services will be phased out. Starting the process now gives you control over timing and pricing instead of being forced to move later."</p>
+        </div>
+
+        <div class="card">
+          <h2>SESSION 2: LOA (Letter of Authorization) Handling</h2>
+          <p><strong>LOA is a standard AT&T requirement for any service change.</strong> Here's how to position it:</p>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li><strong>Standard requirement:</strong> "The LOA is just AT&T's standard authorization form. We need it to verify you're authorized to make this change."</li>
+            <li><strong>Simple process:</strong> "You'll just sign a form confirming the change. It's quick—takes about 2 minutes."</li>
+            <li><strong>CPNI rules:</strong> "The only thing you need to know is that CPNI (Customer Proprietary Network Information) rules mean we can only change the company name on the account. We can't add unrelated services."</li>
+            <li><strong>What changes:</strong> "Basically, the LOA authorizes us to move your services from copper to fiber and update your account with any new services you're ordering."</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>SESSION 3: Closing Techniques</h2>
+
+          <h3>The Summary Close</h3>
+          <p>"Let me make sure I have this right. You need better uptime for your POS systems. APBA gives you that with battery backup and LTE failover. You're ready to move forward—correct?"</p>
+
+          <h3>The Trial Close</h3>
+          <p>"If we could have this installed by next month with no downtime to your operations, would that work for you?"</p>
+
+          <h3>The Alternative Choice Close</h3>
+          <p>"Would you prefer the 100 Mbps or 250 Mbps ADI plan? Both have the same uptime guarantee."</p>
+
+          <h3>The Urgency Close</h3>
+          <p>"This promotional pricing is only good through [date]. If we don't get the order submitted this week, you'll be locked into standard rates. Should we move forward?"</p>
+
+          <h3>Key Closing Principles</h3>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li><strong>Ask for the deal directly</strong> — Don't hint; ask clearly if they're ready to move forward</li>
+            <li><strong>Assume the positive</strong> — Use assumptive language that presumes they've decided "yes"</li>
+            <li><strong>Address remaining concerns</strong> — If they hesitate, ask "What would make you comfortable moving forward?"</li>
+            <li><strong>Provide a clear next step</strong> — "Here's what happens next: I'll send you the proposal by end of day. You review it overnight. We confirm numbers tomorrow morning. Deal?"</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>📝 Day 4 Quiz</h2>
+          <p>Test your objection handling and closing mastery. Pass mark: <span class="highlight">85%</span> (17 out of 20 questions)</p>
+          <button class="btn btn-primary" onclick="renderQuiz('day4-quiz')">Start Day 4 Quiz</button>
+        </div>
+      </div>
+
+      <!-- DAY 5 PAGE -->
+      <div id="day5" class="page">
+        <h1 class="page-title">Day 5: Certification & Go-Live Prep</h1>
+        <p class="page-subtitle">Role-play scenarios, QA scoring, and final certification exam</p>
+
+        <div class="card">
+          <h2>SESSION 1: Role-Play Practice Scenarios</h2>
+          <p>These three scenarios prepare you for the most common customer situations. Practice each one until you can handle the objections smoothly.</p>
+
+          <h3>Scenario A: "The Resistant Copper Customer"</h3>
+          <p><strong>Customer Background:</strong> Been on the same copper service for 15 years. Thinks fiber is a scam. Doesn't see why they should change. "If it's not broken, don't fix it."</p>
+          <p style="margin-top: 12px;"><strong>Your Challenge:</strong> Break through their resistance, show the urgency of copper retirement, position fiber as evolution not replacement.</p>
+          <p style="margin-top: 12px;"><strong>Key Objections You'll Face:</strong></p>
+          <ul style="margin-left: 20px;">
+            <li>"I'm happy with my current service"</li>
+            <li>"Why would I pay more for the same service?"</li>
+            <li>"I don't trust anything new"</li>
+          </ul>
+
+          <h3>Scenario B: "The Price-Conscious Retailer"</h3>
+          <p><strong>Customer Background:</strong> Small retail shop. Budget is tight. Every dollar matters. Already has competitors with better pricing elsewhere.</p>
+          <p style="margin-top: 12px;"><strong>Your Challenge:</strong> Show ROI, demonstrate how reduced downtime pays for the upgrade, position value over price.</p>
+          <p style="margin-top: 12px;"><strong>Key Objections You'll Face:</strong></p>
+          <ul style="margin-left: 20px;">
+            <li>"That's more than I'm paying now"</li>
+            <li>"Can you do better on price?"</li>
+            <li>"I need to comparison shop"</li>
+          </ul>
+
+          <h3>Scenario C: "The Tech-Savvy Office Manager"</h3>
+          <p><strong>Customer Background:</strong> Knows technology well. Has already researched fiber. Asking detailed technical questions. May be testing your knowledge.</p>
+          <p style="margin-top: 12px;"><strong>Your Challenge:</strong> Answer technical questions accurately, show deep product knowledge, position AT&T's advantages, build credibility.</p>
+          <p style="margin-top: 12px;"><strong>Key Questions You'll Face:</strong></p>
+          <ul style="margin-left: 20px;">
+            <li>"What's your actual uptime SLA?"</li>
+            <li>"How does latency compare to [competitor]?"</li>
+            <li>"What's the technical difference between managed and unmanaged routers?"</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>SESSION 2: Quality Assurance (QA) Scoring Framework</h2>
+          <p>Use this scorecard to evaluate role-play performance. Maximum 100 points.</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Points</th>
+                <th>Criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Greeting & Control (5 pts)</strong></td>
+                <td>0-5</td>
+                <td>Professional introduction, established rapport, assumed control of call flow</td>
+              </tr>
+              <tr>
+                <td><strong>Discovery & Qualification (10 pts)</strong></td>
+                <td>0-10</td>
+                <td>Asked discovery questions, listened actively, identified pain points, documented needs</td>
+              </tr>
+              <tr>
+                <td><strong>Solution Positioning (20 pts)</strong></td>
+                <td>0-20</td>
+                <td>Connected solution to customer needs, used SPIN framework, addressed multiple products appropriately</td>
+              </tr>
+              <tr>
+                <td><strong>Pricing & Value Stack (20 pts)</strong></td>
+                <td>0-20</td>
+                <td>Presented MRC confidently, showed ROI, justified value, positioned as investment</td>
+              </tr>
+              <tr>
+                <td><strong>Objection Handling (20 pts)</strong></td>
+                <td>0-20</td>
+                <td>Used approved responses, turned objections into opportunities, didn't get defensive</td>
+              </tr>
+              <tr>
+                <td><strong>Product Knowledge (15 pts)</strong></td>
+                <td>0-15</td>
+                <td>Accurate product details, knew APBA fire alarm rule, understood router differences, speed tiers</td>
+              </tr>
+              <tr>
+                <td><strong>Closing & Next Steps (10 pts)</strong></td>
+                <td>0-10</td>
+                <td>Asked for the deal, proposed clear next steps, got commitment or agreement to follow-up</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Score Interpretation</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Score Range</th>
+                <th>Result</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>90-100</td>
+                <td><strong>Excellent</strong></td>
+                <td>Demonstrate this call as a model for team training</td>
+              </tr>
+              <tr>
+                <td>80-89</td>
+                <td><strong>Good</strong></td>
+                <td>Ready for live calling; continue developing in one or two areas</td>
+              </tr>
+              <tr>
+                <td>70-79</td>
+                <td><strong>Fair</strong></td>
+                <td>Needs additional coaching before live calling; shadow a top performer</td>
+              </tr>
+              <tr>
+                <td>Below 70</td>
+                <td><strong>Needs Improvement</strong></td>
+                <td>Requires significant additional training; practice more scenarios</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>SESSION 3: Final Certification Exam</h2>
+          <p><strong>50 Multiple Choice Questions | 60 Minute Time Limit | Pass Mark: 85% (43 out of 50)</strong></p>
+          <p style="margin-top: 16px;">This comprehensive exam covers all 5 days of training. You must pass to be certified as an AT&T Fiber Sales professional.</p>
+          <button class="btn btn-primary" onclick="renderQuiz('day5-final')">Start Final Certification Exam</button>
+        </div>
+      </div>
+
+      <!-- QUICK REFERENCE CARD PAGE -->
+      <div id="quick-ref" class="page">
+        <h1 class="page-title">Quick Reference Card</h1>
+        <p class="page-subtitle">Fast lookup for product features, objections, and sales techniques</p>
+
+        <div class="card">
+          <h2>Product Portfolio at a Glance</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Abbr.</th>
+                <th>Best For</th>
+                <th>Key Differentiator</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AT&T Dedicated Internet</td>
+                <td>ADI</td>
+                <td>Guaranteed bandwidth</td>
+                <td>10 Mbps-1 Tbps, dedicated, symmetrical</td>
+              </tr>
+              <tr>
+                <td>ADI + Voice Bundle</td>
+                <td>ADIVB</td>
+                <td>Internet + voice together</td>
+                <td>Single contract, IP Flexible Reach</td>
+              </tr>
+              <tr>
+                <td>Business Voice</td>
+                <td>ABV</td>
+                <td>POTS replacement</td>
+                <td>24hr battery, wireless failover</td>
+              </tr>
+              <tr>
+                <td>Phone for Business Advanced</td>
+                <td>APBA</td>
+                <td>Legacy analog (FIRE ALARMS!)</td>
+                <td>Fire alarm certified, 24hr battery</td>
+              </tr>
+              <tr>
+                <td>Office@Hand</td>
+                <td>O@H</td>
+                <td>Unified communications</td>
+                <td>Cloud-based, multi-device, unlimited US calling</td>
+              </tr>
+              <tr>
+                <td>Dynamic Defense</td>
+                <td>DD</td>
+                <td>Network security</td>
+                <td>24/7 monitoring, threat intelligence</td>
+              </tr>
+              <tr>
+                <td>Business Fiber</td>
+                <td>ABF</td>
+                <td>Speed + simplicity</td>
+                <td>100% fiber, no contract, no caps</td>
+              </tr>
+              <tr>
+                <td>Internet Air</td>
+                <td>AIA</td>
+                <td>Backup/wireless</td>
+                <td>Fixed wireless 5G, no data caps</td>
+              </tr>
+              <tr>
+                <td>Wireless Broadband</td>
+                <td>AWB</td>
+                <td>Cellular backup</td>
+                <td>Unlimited data, fixed rate</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>Product-to-Service Line Mapping</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Customer Need</th>
+                <th>Recommended Product</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Fire Alarm System</strong></td>
+                <td><span class="highlight">APBA (ONLY OPTION)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Fax Machine</strong></td>
+                <td>APBA (preferred) or ABV</td>
+              </tr>
+              <tr>
+                <td><strong>Elevator System</strong></td>
+                <td>APBA</td>
+              </tr>
+              <tr>
+                <td><strong>Point of Sale</strong></td>
+                <td>APBA or ADI</td>
+              </tr>
+              <tr>
+                <td><strong>Voice Lines</strong></td>
+                <td>ADIVB or O@H</td>
+              </tr>
+              <tr>
+                <td><strong>Internet Only</strong></td>
+                <td>ADI, ABF, or AIA</td>
+              </tr>
+              <tr>
+                <td><strong>Network Security</strong></td>
+                <td>Dynamic Defense (add-on to ADI)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>Top 5 Objection Quick Responses</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Objection</th>
+                <th>Quick Response</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>"Not AT&T"</td>
+                <td>"We're certified AT&T Alliance Partners. You get personalized support plus AT&T's network."</td>
+              </tr>
+              <tr>
+                <td>"Already have fiber"</td>
+                <td>"Your account still shows copper active. Let me verify what you actually have running."</td>
+              </tr>
+              <tr>
+                <td>"Not interested"</td>
+                <td>"Copper's being phased out. Now is the time to transition while promotional rates are available."</td>
+              </tr>
+              <tr>
+                <td>"Phones go down if internet fails"</td>
+                <td>"That's why we recommend APBA with 24hr battery backup and LTE failover—your phones stay up."</td>
+              </tr>
+              <tr>
+                <td>"Already have an AT&T rep"</td>
+                <td>"Great! We're not replacing them—we're handling your fiber transition so they focus on other priorities."</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>Closing Techniques Quick Reference</h2>
+          <ul style="margin-left: 20px;">
+            <li><strong>Summary Close:</strong> "So you need uptime guarantee. APBA gives you that. Ready to move forward?"</li>
+            <li><strong>Trial Close:</strong> "If we could install this by next month with zero downtime, would that work?"</li>
+            <li><strong>Alternative Choice:</strong> "Which appeals to you more—the 100 Mbps or 250 Mbps option?"</li>
+            <li><strong>Urgency Close:</strong> "This rate locks in only through [date]. Move forward this week?"</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Critical Product Rules</h2>
+          <ul style="margin-left: 20px;">
+            <li><strong>FIRE ALARM = APBA:</strong> No exceptions, no substitutes. APBA is the only fire alarm certified product.</li>
+            <li><strong>ADI Minimum Speed:</strong> 10 Mbps (not 1.5 Mbps). Never quote lower.</li>
+            <li><strong>Managed Routers:</strong> Do NOT provide Wi-Fi. Customers must supply their own.</li>
+            <li><strong>O@H Licensing:</strong> Per-user model. One license = one phone number ringing on multiple devices.</li>
+            <li><strong>Copper Retirement:</strong> Phasing out. Position fiber as evolution, not replacement.</li>
+            <li><strong>CPNI Rules:</strong> LOA can only change company name. No unrelated service additions allowed.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>SPIN Selling Quick Framework</h2>
+          <p><strong>Situation →</strong> "Tell me about your current setup."</p>
+          <p><strong>Problem →</strong> "What challenges are you facing?"</p>
+          <p><strong>Implication →</strong> "How does that impact your business?"</p>
+          <p><strong>Need-Payoff →</strong> "Would a solution that fixes this help you?"</p>
+        </div>
+      </div>
+
+      <!-- TRAINER ANSWER KEY PAGE -->
+      <div id="trainer-key" class="page">
+        <h1 class="page-title">Trainer Answer Key</h1>
+        <p class="page-subtitle">CONFIDENTIAL — Do not distribute to agents before or after training</p>
+
+        <div class="card" style="border-left: 4px solid var(--att-orange);">
+          <p style="color: var(--att-orange); font-weight: 600;">⚠️ TRAINER USE ONLY</p>
+          <p>This answer key is confidential. Use it only for grading quizzes and evaluating agent knowledge. Do not share with agents before they take quizzes.</p>
+        </div>
+
+        <div class="card">
+          <h2>Day 1: Product Knowledge Quiz — Answer Key</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Q#</th>
+                <th>Correct Answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>B) APBA is the only product with fire alarm certification</td></tr>
+              <tr><td>2</td><td>B) 10 Mbps</td></tr>
+              <tr><td>3</td><td>B) Managed routers do NOT provide Wi-Fi</td></tr>
+              <tr><td>4</td><td>C) Ethernet/private line with managed router option</td></tr>
+              <tr><td>5</td><td>B) O@H — unlimited US calling, HD video</td></tr>
+              <tr><td>6</td><td>C) ADI — dedicated internet, 10 Mbps-1 Tbps</td></tr>
+              <tr><td>7</td><td>A) Copper is being phased out; fiber is the future</td></tr>
+              <tr><td>8</td><td>B) Per-user licensing</td></tr>
+              <tr><td>9</td><td>C) 24hr battery backup and LTE failover</td></tr>
+              <tr><td>10</td><td>A) Dynamic Defense</td></tr>
+              <tr><td>11</td><td>A) 100% symmetrical fiber, no contract, no data caps</td></tr>
+              <tr><td>12</td><td>B) Fixed wireless 5G, no data/speed caps</td></tr>
+              <tr><td>13</td><td>B) APBA and ABV</td></tr>
+              <tr><td>14</td><td>C) ADIVB</td></tr>
+              <tr><td>15</td><td>A) Avoid service disruption; fiber is more reliable</td></tr>
+              <tr><td>16</td><td>C) One license = one number on multiple devices</td></tr>
+              <tr><td>17</td><td>B) APBA VAB-1</td></tr>
+              <tr><td>18</td><td>A) Never—managed and unmanaged both lack Wi-Fi</td></tr>
+              <tr><td>19</td><td>C) ADI at 1 Tbps (maximum on the platform)</td></tr>
+              <tr><td>20</td><td>B) All of the above meet different customer needs</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>Day 2: Discovery & Gatekeeper Quiz — Answer Key</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Q#</th>
+                <th>Correct Answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>A) Assumptive tone—speak as if the call is expected</td></tr>
+              <tr><td>2</td><td>C) "It's regarding a project with their department"</td></tr>
+              <tr><td>3</td><td>B) Ask for their name and use it to build rapport</td></tr>
+              <tr><td>4</td><td>A) "I'm hoping you can help me get to..."</td></tr>
+              <tr><td>5</td><td>B) Pattern interrupt—acknowledge you don't want to waste their time</td></tr>
+              <tr><td>6</td><td>C) Understand current infrastructure and pain points</td></tr>
+              <tr><td>7</td><td>A) "What are your biggest challenges related to network performance?"</td></tr>
+              <tr><td>8</td><td>B) "What are your service requirements now and in 1-3 years?"</td></tr>
+              <tr><td>9</td><td>C) Pay attention, add value, be empathetic, summarize to confirm</td></tr>
+              <tr><td>10</td><td>A) Document every line item and what it's used for</td></tr>
+              <tr><td>11</td><td>B) Ask "Are you the decision-maker, or is there someone else involved?"</td></tr>
+              <tr><td>12</td><td>C) Identify both pain points and budget authority</td></tr>
+              <tr><td>13</td><td>B) Follow up within 24 hours with specific recommendations</td></tr>
+              <tr><td>14</td><td>A) Copy relevant details into CRM within the day of discovery call</td></tr>
+              <tr><td>15</td><td>C) Summarize what you learned and confirm understanding</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>Day 4: Objection Handling Quiz — Answer Key</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Q#</th>
+                <th>Correct Answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>B) "We're AT&T Alliance Partners offering personalized support"</td></tr>
+              <tr><td>2</td><td>A) "Your account still shows copper active—let me verify"</td></tr>
+              <tr><td>3</td><td>B) "Copper is being phased out—transition now for promotional rates"</td></tr>
+              <tr><td>4</td><td>B) APBA with 24hr battery and LTE failover + O@H multi-device</td></tr>
+              <tr><td>5</td><td>A) "We're not replacing your rep—we're providing extra support"</td></tr>
+              <tr><td>6</td><td>A) Ask what provider they're considering and why</td></tr>
+              <tr><td>7</td><td>B) "Ask for the reference number and compare offerings"</td></tr>
+              <tr><td>8</td><td>A) "Our records show AT&T service at your location—let me verify"</td></tr>
+              <tr><td>9</td><td>A) "Copper is being retired—planning now prevents disruption"</td></tr>
+              <tr><td>10</td><td>A) "Not yet, but copper is being phased out—act now"</td></tr>
+              <tr><td>11</td><td>B) Standard AT&T requirement; explain CPNI rules apply</td></tr>
+              <tr><td>12</td><td>C) Summary Close—recap needs and ask for confirmation</td></tr>
+              <tr><td>13</td><td>B) Trial Close—propose timeline and ask if it works</td></tr>
+              <tr><td>14</td><td>C) Alternative Choice Close—offer two product options</td></tr>
+              <tr><td>15</td><td>A) Ask what would make them comfortable moving forward</td></tr>
+              <tr><td>16</td><td>B) Present MRC confidently and frame as investment in reliability</td></tr>
+              <tr><td>17</td><td>C) Reference their stated pain points ("This prevents the downtime...")</td></tr>
+              <tr><td>18</td><td>A) Document everything accurately and follow up same day</td></tr>
+              <tr><td>19</td><td>B) Use their language and pain points to show value</td></tr>
+              <tr><td>20</td><td>C) "Are you ready to move forward?" or similar direct ask</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>Day 5: Final Certification Exam Answer Key</h2>
+          <p style="color: var(--att-accent); font-weight: 600;">See grading results in agent records. All 50 questions' answers automatically verified in the system.</p>
+        </div>
+
+        <div class="card">
+          <h2>Certification Passing Criteria</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Quiz/Exam</th>
+                <th>Pass Mark</th>
+                <th>Percentage Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Day 1 Product Knowledge</td>
+                <td>16/20</td>
+                <td>80%</td>
+              </tr>
+              <tr>
+                <td>Day 2 Discovery & Gatekeeper</td>
+                <td>12/15</td>
+                <td>80%</td>
+              </tr>
+              <tr>
+                <td>Day 4 Objection Handling</td>
+                <td>17/20</td>
+                <td>85%</td>
+              </tr>
+              <tr>
+                <td>Day 5 Final Certification</td>
+                <td>43/50</td>
+                <td>86%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <p style="color: var(--att-gray); font-size: 0.9rem; margin-top: 24px;"><strong>Trainer Notes:</strong> This answer key is confidential and should not be shared with agents before or after training. Use only for grading and evaluating agent performance. Monitor scores in the Google Sheets integration to track overall training effectiveness and identify areas for additional coaching.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// QUIZ DATA
+const quizData = {
+  'day1-quiz': {
+    title: 'Day 1: Product Knowledge Quiz',
+    passMark: 80,
+    questions: [
+      { text: 'What is the ONLY product certified for fire alarm systems?', options: ['ABV', 'APBA', 'ADIVB', 'O@H'], answer: 1 },
+      { text: 'What is the MINIMUM sellable ADI speed tier?', options: ['1.5 Mbps', '10 Mbps', '50 Mbps', '100 Mbps'], answer: 1 },
+      { text: 'Which statement is TRUE about managed routers?', options: ['They provide Wi-Fi access', 'They do NOT provide Wi-Fi; customer must supply their own', 'AT&T charges extra for Wi-Fi', 'Managed routers are optional'], answer: 1 },
+      { text: 'Which product includes Ethernet/private line with managed router option?', options: ['ABF', 'ADI', 'AIA', 'APBA'], answer: 1 },
+      { text: 'Which product is cloud-based with unlimited US calling and HD video?', options: ['ADIVB', 'O@H', 'Dynamic Defense', 'ABV'], answer: 1 },
+      { text: 'A customer needs guaranteed symmetrical bandwidth from 10 Mbps to 1 Tbps. Which product?', options: ['ABF', 'ADI', 'AIA', 'AWB'], answer: 1 },
+      { text: 'How should you position the copper-to-fiber transition?', options: ['Expensive upgrade you\'re forcing', 'Copper is being phased out; fiber is the future infrastructure', 'Just a faster service', 'Optional upgrade only for tech companies'], answer: 1 },
+      { text: 'How is Office@Hand (O@H) licensed?', options: ['Per device', 'Per user', 'Flat monthly fee for unlimited', 'Per phone number maximum 5 devices'], answer: 1 },
+      { text: 'If a customer loses internet, their phones go down. What backup solution?', options: ['Nothing available', '24hr battery backup and LTE failover (APBA)', 'They need O@H instead', 'Not possible to fix'], answer: 1 },
+      { text: 'Which product provides network security with 24/7/365 monitoring?', options: ['ADI only', 'ABV', 'Dynamic Defense', 'All products include it'], answer: 2 },
+      { text: 'ABF (Business Fiber) is best for which customers?', options: ['Large enterprises only', 'Customers needing speed, symmetry, no contract, no data caps', 'Voice customers', 'Backup internet only'], answer: 1 },
+      { text: 'AIA (Internet Air) is best for which scenario?', options: ['Primary wired internet', 'Backup internet or areas without wired options', 'Enterprise data centers', 'Fire alarm systems'], answer: 1 },
+      { text: 'A customer has a fax machine and elevator system. Which product(s)?', options: ['O@H', 'ABF', 'APBA and ABV', 'ADIVB'], answer: 2 },
+      { text: 'ADIVB is a bundle of what two services?', options: ['Internet + Security', 'Voice + Video', 'Internet + Voice', 'Internet + Backup'], answer: 2 },
+      { text: 'When a customer says they\'re worried about downtime, position which benefit?', options: ['Cost savings', 'Avoid service disruption; fiber more reliable', 'Faster speeds', 'Unlimited data'], answer: 1 },
+      { text: 'One O@H license equals what?', options: ['One physical phone', 'One phone number ringing on multiple devices', 'One device per company', 'One call at a time'], answer: 1 },
+      { text: 'APBA VAB-1 is best for customers with what legacy systems?', options: ['Modern IP systems', 'Cellular backup only', 'Analog POTS, fax, fire alarms, elevators', 'Video conferencing'], answer: 2 },
+      { text: 'When should a managed router provide Wi-Fi?', options: ['Always', 'With additional charge', 'Never—customer must supply their own', 'Only if they pay extra'], answer: 2 },
+      { text: 'What is the maximum ADI speed available?', options: ['100 Mbps', '1 Gbps', '1 Tbps', '100 Gbps'], answer: 2 },
+      { text: 'Which products best serve all customer types?', options: ['Just ADI', 'Just O@H', 'All of them—each serves different needs', 'Only ABF and APBA'], answer: 2 }
+    ]
+  },
+
+  'day2-quiz': {
+    title: 'Day 2: Discovery & Gatekeeper Quiz',
+    passMark: 80,
+    questions: [
+      { text: 'What gatekeeper technique means speaking as if the call is expected?', options: ['Assumptive tone', 'Pattern interrupt', 'Help frame', 'Authority tone'], answer: 0 },
+      { text: 'When a gatekeeper asks "What is this regarding?", what\'s the right response?', options: ['"We\'re selling telecom services"', '"It\'s regarding a project with their department"', '"I can only speak to the decision-maker"', '"It\'s confidential"'], answer: 1 },
+      { text: 'Using a gatekeeper\'s name creates what?', options: ['Suspicion', 'Rapport and cooperation', 'Distance', 'Confusion'], answer: 1 },
+      { text: 'What is a "help frame" in gatekeeper communication?', options: ['"Can you tell me...?"', '"I\'m hoping you can help me get to..."', '"Transfer me now"', '"I have an urgent matter"'], answer: 1 },
+      { text: 'A pattern interrupt in gatekeeper talk acknowledges what?', options: ['Your time is valuable; I don\'t want to waste it', 'The call is urgent', 'They need to help', 'Nothing special'], answer: 0 },
+      { text: 'The primary objective of discovery questions is to:', options: ['Close the deal immediately', 'Understand pain points and qualify fit', 'Get their credit information', 'Sell features not benefits'], answer: 1 },
+      { text: 'Which discovery question uncovers pain points?', options: ['"Tell me your name"', '"What challenges are you facing with network performance?"', '"Do you like our products?"', '"How much budget?"'], answer: 1 },
+      { text: 'A good discovery question about FUTURE NEEDS would be:', options: ['"Are you happy?"', '"What are your service requirements now and in 1-3 years?"', '"Do you want to switch?"', '"Who decided this?"'], answer: 1 },
+      { text: 'Active listening includes:', options: ['Talking more than listening', 'Paying attention, adding value, being empathetic, summarizing', 'Just hearing words', 'Planning your next question'], answer: 1 },
+      { text: 'What must you document in discovery?', options: ['Only the yes answers', 'Every service line and what it\'s used for', 'Just the budget', 'Nothing specific'], answer: 1 },
+      { text: 'How should you identify the decision-maker?', options: ['Assume it\'s the person answering', 'Ask: "Are you the decision-maker or is someone else involved?"', 'It doesn\'t matter', 'Always ask for the CEO'], answer: 1 },
+      { text: 'After discovery, what matters most?', options: ['How fast you pitch', 'Identifying both pain points AND budget authority', 'Getting their email', 'Moving to close immediately'], answer: 1 },
+      { text: 'When should you follow up after initial discovery?', options: ['In a week', 'Within 24 hours with recommendations', 'Never', 'Only if they ask'], answer: 1 },
+      { text: 'What\'s the best place to document discovery findings?', options: ['Your notes app', 'CRM same day', 'Nowhere formal', 'Email someday'], answer: 1 },
+      { text: 'At the end of discovery, you should:', options: ['Immediately start pitching', 'Say "I\'ll call you back sometime"', 'Summarize what you learned and confirm understanding', 'Go silent'], answer: 2 }
+    ]
+  },
+
+  'day4-quiz': {
+    title: 'Day 4: Objection Handling Quiz',
+    passMark: 85,
+    questions: [
+      { text: '"You are not AT&T. I only want to speak to them." — Best approved response:', options: ['"We are too an authorized partner"', '"We\'re certified AT&T Alliance Partners offering personalized support"', '"AT&T doesn\'t have time for small customers"', '"Let me connect you to AT&T directly"'], answer: 1 },
+      { text: '"I already have fiber." — Best approved response:', options: ['"That\'s impossible"', '"Your account still shows copper active—let me verify"', '"Then you don\'t need us"', '"Fiber from where?"'], answer: 1 },
+      { text: '"I\'m not interested in switching." — Best approved response:', options: ['"You should be"', '"Copper is being phased out—transition now for promotional rates"', '"Too bad"', '"Why not?"'], answer: 1 },
+      { text: '"If I lose internet, my phones go down." — Best approved response:', options: ['"That\'s life"', '"APBA with 24hr battery and LTE failover keeps phones up; O@H works on any device"', '"Not much we can do"', '"Buy a backup generator"'], answer: 1 },
+      { text: '"I already have an AT&T rep." — Best approved response:', options: ['"Fire them and use us"', '"We\'re providing extra support—not replacing your rep"', '"Then you don\'t need us"', '"That rep is underperforming"'], answer: 1 },
+      { text: '"I\'m planning to switch providers." — Your action:', options: ['Give up', 'Ask what provider and why; compare offerings', 'Tell them AT&T is better', 'Argue with them'], answer: 1 },
+      { text: '"I\'m already in the process of switching." — Your action:', options: ['End the call', 'Ask which service they\'re switching to and reference the number', 'Do nothing', 'Tell them to cancel'], answer: 1 },
+      { text: '"I don\'t have AT&T copper service." — Best response:', options: ['"Then we can\'t help"', '"Records show AT&T service at your location—let me verify"', '"Wrong number"', '"You must"'], answer: 1 },
+      { text: '"I don\'t want/need fiber." — Best response:', options: ['"You\'re wrong"', '"Copper is being retired—planning now prevents service disruption"', '"Fiber is mandatory"', '"That\'s old-fashioned thinking"'], answer: 1 },
+      { text: '"Is this mandatory?" — Best response:', options: ['"Yes, everyone must switch"', '"Not yet, but copper is being phased out—act now"', ['"No", no action'], answer: 1 },
+      { text: 'LOA (Letter of Authorization) is a(n):', options: ['Optional request', 'Standard AT&T requirement to authorize service changes', 'Marketing material', 'Billing document'], answer: 1 },
+      { text: 'The Summary Close would be:', options: ['"Buy now"', '"Let me recap: you need uptime, APBA provides it—ready?"', '"I think you should switch"', '"Maybe call us later"'], answer: 1 },
+      { text: 'The Trial Close would be:', options: ['"Our service is free to try"', '"If we install by next month with zero downtime, would that work?"', '"Trial period is 30 days"', '"Try calling us next year"'], answer: 1 },
+      { text: 'The Alternative Choice Close would be:', options: ['"Choose a competitor"', '"100 Mbps or 250 Mbps—which appeals to you?"', '"I don\'t care which you pick"', '"No choices available"'], answer: 1 },
+      { text: 'When a prospect hesitates after your close, you should:', options: ['Hang up', 'Ask "What would make you comfortable moving forward?"', 'Give them an ultimatum', 'Leave them alone'], answer: 1 },
+      { text: 'How should you present MRC (Monthly Recurring Cost)?', options: ['Apologetically', 'Confidently, framed as investment in reliability and value', 'As an afterthought', 'Never mention cost'], answer: 1 },
+      { text: 'When positioning value against price, reference:', options: ['Competitor pricing', 'Their stated pain points ("This prevents the downtime you mentioned")', 'Industry averages', 'Your own opinions'], answer: 1 },
+      { text: 'After handling an objection, you should:', options: ['Move on without confirming', 'Document the response and follow up same day', 'Never mention it again', 'Tell your manager'], answer: 1 },
+      { text: 'To build compelling value, use:', options: ['Generic benefits', 'Their language and pain points to show direct connection', 'Competitor comparisons only', 'Pressure tactics'], answer: 1 },
+      { text: 'The most direct way to close is to:', options: ['Hope they decide', 'Ask directly: "Are you ready to move forward?"', 'Wait for them to call back', 'Send multiple emails'], answer: 1 }
+    ]
+  },
+
+  'day5-final': {
+    title: 'Final Certification Exam',
+    passMark: 86,
+    questions: [
+      { text: 'Which product serves customers with fire alarm systems?', options: ['ADIVB', 'O@H', 'APBA', 'ABF'], answer: 2 },
+      { text: 'What is the minimum ADI speed?', options: ['1.5 Mbps', '10 Mbps', '25 Mbps', '50 Mbps'], answer: 1 },
+      { text: 'A managed router provides:', options: ['Wi-Fi access', 'No Wi-Fi; customer must supply', 'Optional Wi-Fi', 'Built-in security'], answer: 1 },
+      { text: 'ADIVB includes what two services?', options: ['Voice + Video', 'Internet + Voice', 'Security + Internet', 'Mobile + Voice'], answer: 1 },
+      { text: 'O@H is best described as:', options: ['Basic phone service', 'Cloud-based unified communications with unlimited US calling', 'Fiber internet', 'Backup internet'], answer: 1 },
+      { text: 'Dynamic Defense protects against:', options: ['Weather', 'Hackers through 24/7 monitoring and threat intelligence', 'Competitors', 'Physical theft'], answer: 1 },
+      { text: 'ABF is 100% fiber with:', options: ['No contract, no caps, fastest speeds', 'Annual contracts required', 'Data caps at 100GB', 'Limited to 1 Gbps'], answer: 0 },
+      { text: 'AIA (Internet Air) is best for:', options: ['Wired primary internet', 'Backup internet or wireless alternatives', 'Voice lines', 'Server hosting'], answer: 1 },
+      { text: 'AWB (Wireless Broadband) features:', options: ['Limited data, variable pricing', 'Unlimited data, fixed rate, 5G access', 'Copper landlines', 'Voice only'], answer: 1 },
+      { text: 'A customer with a POS system needs which product?', options: ['AIA', 'O@H', 'APBA or ADI', 'AWB'], answer: 2 },
+      { text: 'The gatekeeper technique "help frame" is:', options: ['"Can you help?"', '"I\'m hoping you can help me get to..."', '"Help me out"', '"Can I help?"'], answer: 1 },
+      { text: 'When asked "What is this regarding?" by gatekeeper, say:', options: ['"Confidential"', '"It\'s regarding a project with their department"', '"Sales call"', '"I can only tell them"'], answer: 1 },
+      { text: 'Using the gatekeeper\'s name builds:', options: ['Suspicion', 'Rapport and cooperation', 'Distance', 'Formality'], answer: 1 },
+      { text: 'Pattern interrupt in gatekeeper approach means:', options: ['Interrupting them', 'Breaking normal sales behavior ("I don\'t want to waste your time")', 'Being rude', 'Being suspicious'], answer: 1 },
+      { text: 'A key discovery question is:', options: ['"Do you like us?"', '"What challenges are you facing with network performance?"', ['"How are you?"', null]], answer: 1 },
+      { text: 'Active listening requires:', options: ['Talking more', 'Paying attention, adding value, being empathetic, summarizing', 'Silence', 'Taking notes constantly'], answer: 1 },
+      { text: 'After discovery, identify:', options: ['Just the pain points', 'Pain points AND budget/decision authority', 'Just budget', 'Just contact info'], answer: 1 },
+      { text: 'The SPIN framework stage "Implication" focuses on:', options: ['Current situation', 'Challenges they face', 'Consequences of their problems', 'Solutions available'], answer: 2 },
+      { text: 'SPIN "Situation" questions like:', options: ['"Why don\'t you have fiber?"', '"Tell me about your current phone setup"', '"What\'s wrong?"', '"Do you want to switch?"'], answer: 1 },
+      { text: 'SPIN "Problem" stage uncovers:', options: ['Success stories', 'Challenges and difficulties', 'Budget constraints', 'Competitors'], answer: 1 },
+      { text: 'SPIN "Need-Payoff" helps customer:', options: ['Understand their budget', 'Envision value of your solution', 'See competitor products', 'Feel pressured'], answer: 1 },
+      { text: 'A strong proposal includes:', options: ['Generic benefits', 'Customized solution connected to their needs with ROI', 'Lowest price possible', 'Many technical details'], answer: 1 },
+      { text: 'MRC should be positioned as:', options: ['Expense to apologize for', 'Investment in reliability, security, and growth', 'Temporary cost', 'Negotiable downward'], answer: 1 },
+      { text: 'The call flow opener should:', options: ['Launch into features', 'Build rapport, establish credibility, state purpose', 'Ask for the sale', 'Demand a decision'], answer: 1 },
+      { text: 'A multi-call closer sales structure includes:', options: ['Single call close', 'Appointment setter → Closer call #1 → Closer call #2 (if needed)', 'No follow-up calls', 'Endless meetings'], answer: 1 },
+      { text: 'When opening a closer call:', options: ['"Hi, let\'s buy"', '"Hi [Name], this is [You]. Sarah discussed [topic]. I want to dive deeper. Do you have 15 min?"', '"You ready to sign?"', '"Let me pitch"'], answer: 1 },
+      { text: 'Objection "You are not AT&T" response:', options: ['"We are too"', '"We\'re certified AT&T Alliance Partners offering personalized support"', '"Leave me alone"', '"Call AT&T directly"'], answer: 1 },
+      { text: 'Objection "Already have fiber" response:', options: ['"No you don\'t"', '"Your account shows copper active—let me verify"', '"Too bad"', '"Upgrade anyway"'], answer: 1 },
+      { text: 'Objection "Not interested" response:', options: ['"Too bad"', '"Copper is being phased out—transition now for rates"', ['"Okay"', null]], answer: 1 },
+      { text: 'Objection "Phones go down if internet fails" response:', options: ['"Move to cellular"', '"APBA with 24hr battery + LTE failover; O@H on multiple devices"', '"Can\'t fix that"', '"Not a real issue"'], answer: 1 },
+      { text: 'Objection "Already have AT&T rep" response:', options: ['"Replace them"', '"We\'re providing extra support, not replacing them"', '"We\'re done then"', '"Fire them"'], answer: 1 },
+      { text: 'When customer says "Planning to switch": you should:', options: ['Give up', 'Ask why and compare offerings', 'Be silent', 'Argue'], answer: 1 },
+      { text: 'When customer says "Already switching": you should:', options: ['Accept it', 'Ask service/reference number and compare', 'Hang up', 'Yell at them'], answer: 1 },
+      { text: 'LOA is:', options: ['Optional marketing', 'Standard AT&T requirement to authorize changes', 'A contract', 'Billing form'], answer: 1 },
+      { text: 'CPNI rules mean LOA can:', options: ['Change anything on account', 'Only change company name; no unrelated services', 'Add anything', 'Nothing specific'], answer: 1 },
+      { text: 'The Summary Close phrase:', options: ['"Buy now"', '"Let me recap: [needs], [solution]—ready?"', ['"Maybe later"', null]], answer: 1 },
+      { text: 'The Trial Close phrase:', options: ['"Free trial"', '"If [timeline], would that work?"', '"Try it free"', '"Later"'], answer: 1 },
+      { text: 'The Alternative Choice Close:', options: ['"Pick anything"', '"Which appeals: [Option A] or [Option B]?"', '"You choose for me"', '"No options"'], answer: 1 },
+      { text: 'When customer hesitates after close:', options: ['Hang up', 'Ask "What would make you comfortable moving forward?"', 'Pressure them', 'Go silent'], answer: 1 },
+      { text: 'To reference prior conversation with closer:', options: ['"Start fresh"', '"[Appointment setter] discussed [topic]. I want to dive deeper."', '"What was said?"', '"No idea"'], answer: 1 },
+      { text: 'A QA scorecard maximum is:', options: ['50 points', '75 points', '100 points', '150 points'], answer: 2 },
+      { text: 'Day 1 Product Knowledge pass rate is:', options: ['70%', '75%', '80%', '90%'], answer: 2 },
+      { text: 'Day 2 Discovery & Gatekeeper pass rate is:', options: ['75%', '80%', '85%', '90%'], answer: 1 },
+      { text: 'Day 4 Objection Handling pass rate is:', options: ['80%', '85%', '90%', '95%'], answer: 1 },
+      { text: 'Day 5 Final Exam pass rate is:', options: ['80%', '85%', '86%', '90%'], answer: 2 },
+      { text: 'Documentation should happen:', options: ['Next week', 'Same day of call', 'Never', 'Only if asked'], answer: 1 },
+      { text: 'The FIRE ALARM rule is:', options: ['APBA is one option', 'APBA is the ONLY option', 'No solution', 'Any product works'], answer: 1 },
+      { text: 'Copper-to-fiber positioning highlights:', options: ['Copper is better', 'Fiber is evolution; copper retiring; act now for rates', 'No difference', 'Copper is mandatory'], answer: 1 },
+      { text: 'O@H licensing model is:', options: ['Per device', 'Per user (one license = one number on multiple devices)', 'Per company', 'Per phone'], answer: 1 },
+      { text: 'Final certification requires passing:', options: ['Day 1 quiz only', 'Day 1, 2, 4 quizzes + Day 5 exam all at required %', 'Just showing up', 'Only Day 5'], answer: 1 }
+    ]
+  }
+};
+
+// AUTHENTICATION
+function login() {
+  const name = document.getElementById('agent-name').value.trim();
+  const password = document.getElementById('agent-password').value;
+  const errorEl = document.getElementById('login-error');
+
+  errorEl.textContent = '';
+
+  if (!name || name.split(' ').length < 2) {
+    errorEl.textContent = 'Please enter your full name (first and last).';
+    return;
+  }
+
+  if (password !== 'FiberTrain#2026') {
+    errorEl.textContent = 'Incorrect password.';
+    return;
+  }
+
+  localStorage.setItem('agent_name', name);
+  document.getElementById('agent-display').textContent = name;
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app-container').style.display = 'flex';
+  loadProgress();
+}
+
+function logout() {
+  if (confirm('Are you sure you want to logout?')) {
+    localStorage.removeItem('agent_name');
+    location.reload();
+  }
+}
+
+// NAVIGATION
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach(ni => ni.classList.remove('active'));
+  event.target.classList.add('active');
+
+  window.scrollTo(0, 0);
+}
+
+// QUIZ SYSTEM
+function renderQuiz(quizId) {
+  const quiz = quizData[quizId];
+  if (!quiz) return;
+
+  const contentArea = document.querySelector('.content-area');
+  let html = `<div class="quiz-container">
+    <div class="quiz-header">
+      <h2 style="margin: 0;">${quiz.title}</h2>
+      <div class="quiz-progress">Question <span class="current">1</span> of ${quiz.questions.length}</div>
+    </div>`;
+
+  quiz.questions.forEach((q, idx) => {
+    html += `<div class="question-card" data-question="${idx}">
+      <div class="question-number">Question ${idx + 1}</div>
+      <div class="question-text">${q.text}</div>`;
+
+    q.options.forEach((opt, oi) => {
+      html += `<div class="answer-option" onclick="selectOption(this, ${quizId}, ${idx}, ${oi})">
+        <div class="answer-radio"></div>
+        <div>${opt}</div>
+      </div>`;
+    });
+
+    html += `</div>`;
+  });
+
+  html += `<div class="btn-group">
+    <button class="btn btn-secondary" onclick="history.back()">Back</button>
+    <button class="btn btn-primary" onclick="gradeQuiz('${quizId}')">Submit Quiz</button>
+  </div></div>`;
+
+  contentArea.innerHTML = html;
+}
+
+function selectOption(el, quizId, questionIdx, optionIdx) {
+  const options = el.parentElement.querySelectorAll('.answer-option');
+  options.forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+
+  // Store selection
+  const quiz = quizData[quizId];
+  quiz.questions[questionIdx].selected = optionIdx;
+}
+
+function gradeQuiz(quizId) {
+  const quiz = quizData[quizId];
+  const agentName = localStorage.getItem('agent_name');
+  let correct = 0;
+
+  quiz.questions.forEach((q, idx) => {
+    if (q.selected === q.answer) correct++;
+  });
+
+  const percentage = Math.round((correct / quiz.questions.length) * 100);
+  const passed = percentage >= quiz.passMark;
+
+  // Store result
+  const key = `quiz_${quizId}`;
+  const results = {
+    score: correct,
+    total: quiz.questions.length,
+    percentage: percentage,
+    passed: passed,
+    timestamp: new Date().toISOString()
+  };
+  localStorage.setItem(key, JSON.stringify(results));
+
+  // Report to webhook
+  reportScore(agentName, quizId, correct, quiz.questions.length, passed);
+
+  // Show results
+  const contentArea = document.querySelector('.content-area');
+  let html = `<div class="results-container">
+    <div class="results-card">
+      <div class="results-title">${passed ? '✓ Quiz Passed!' : '✗ Quiz Failed'}</div>
+      <div class="results-score">${percentage}%</div>
+      <div class="results-message ${passed ? 'pass' : 'fail'}">
+        ${passed ? `Great work! You scored ${correct}/${quiz.questions.length}. Pass mark: ${quiz.passMark}%` : `You scored ${correct}/${quiz.questions.length}. Pass mark: ${quiz.passMark}%. Please review the material and try again.`}
+      </div>
+      <div class="results-details">
+        <div class="results-detail">
+          <div class="results-detail-label">Correct Answers</div>
+          <div class="results-detail-value">${correct}/${quiz.questions.length}</div>
+        </div>
+        <div class="results-detail">
+          <div class="results-detail-label">Pass Requirement</div>
+          <div class="results-detail-value">${quiz.passMark}%</div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" onclick="location.reload()">Return to Training</button>
+      ${!passed ? `<button class="btn btn-primary" onclick="renderQuiz('${quizId}')">Retake Quiz</button>` : ''}
+    </div>
+  </div>`;
+
+  contentArea.innerHTML = html;
+}
+
+// PROGRESS TRACKING
+function loadProgress() {
+  const agentName = localStorage.getItem('agent_name');
+  const progressDisplay = document.getElementById('progress-display');
+
+  const quizzes = [
+    { id: 'day1-quiz', label: 'Day 1 Quiz', total: 20 },
+    { id: 'day2-quiz', label: 'Day 2 Quiz', total: 15 },
+    { id: 'day4-quiz', label: 'Day 4 Quiz', total: 20 },
+    { id: 'day5-final', label: 'Final Exam', total: 50 }
+  ];
+
+  let completedCount = 0;
+  let html = '';
+
+  quizzes.forEach(q => {
+    const resultKey = `quiz_${q.id}`;
+    const result = JSON.parse(localStorage.getItem(resultKey) || 'null');
+
+    if (result) {
+      completedCount++;
+      const cardClass = result.passed ? 'completed' : 'failed';
+      html += `<div class="progress-card ${cardClass}">
+        <div class="progress-label">${q.label}</div>
+        <div class="progress-value">${result.percentage}%</div>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" style="width: ${result.percentage}%"></div>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--att-gray); margin-top: 8px;">
+          ${result.score}/${result.total} — ${result.passed ? 'PASSED' : 'FAILED'}
+        </div>
+      </div>`;
+    } else {
+      html += `<div class="progress-card">
+        <div class="progress-label">${q.label}</div>
+        <div class="progress-value">—</div>
+        <div style="color: var(--att-gray); font-size: 0.9rem;">Not attempted</div>
+      </div>`;
+    }
+  });
+
+  const overallPercent = Math.round((completedCount / quizzes.length) * 100);
+
+  progressDisplay.innerHTML = `
+    <div class="progress-card">
+      <div class="progress-label">Overall Progress</div>
+      <div class="progress-value">${overallPercent}%</div>
+      <div class="progress-bar">
+        <div class="progress-bar-fill" style="width: ${overallPercent}%"></div>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--att-gray); margin-top: 8px;">
+        ${completedCount}/${quizzes.length} quizzes completed
+      </div>
+    </div>
+    ${html}
+  `;
+}
+
+// GOOGLE SHEETS INTEGRATION PLACEHOLDER
+function reportScore(agentName, quizId, score, total, passed) {
+  const WEBHOOK_URL = ''; // Will be configured later
+
+  if (!WEBHOOK_URL) return; // Silently skip if not configured
+
+  fetch(WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      agent: agentName,
+      training: 'Fiber',
+      quiz: quizId,
+      score: score,
+      total: total,
+      percentage: Math.round((score / total) * 100),
+      passed: passed,
+      timestamp: new Date().toISOString()
+    })
+  }).catch(() => {}); // Silent fail if webhook unavailable
+}
+
+// INITIALIZE
+document.addEventListener('DOMContentLoaded', () => {
+  const agentName = localStorage.getItem('agent_name');
+  if (agentName) {
+    document.getElementById('agent-display').textContent = agentName;
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app-container').style.display = 'flex';
+    loadProgress();
+  }
+
+  // Enter key to login
+  document.getElementById('agent-password').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') login();
+  });
+});
+</script>
+</body>
+</html>
