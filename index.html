@@ -635,7 +635,7 @@ body {
   <div class="login-container">
     <div class="logo">AT&T</div>
     <div class="subtitle">Fiber Sales Training</div>
-    <input type="text" id="agent-name" placeholder="Full Name (First Last)" autocomplete="off">
+    <input type="email" id="agent-name" placeholder="Email Address" autocomplete="off">
     <input type="password" id="agent-password" placeholder="Password">
     <button onclick="login()">Login</button>
     <div id="login-error" class="login-error"></div>
@@ -1995,8 +1995,8 @@ function login() {
 
   errorEl.textContent = '';
 
-  if (!name || name.split(' ').length < 2) {
-    errorEl.textContent = 'Please enter your full name (first and last).';
+  if (!name || !name.includes('@')) {
+    errorEl.textContent = 'Please enter a valid email address.';
     return;
   }
 
