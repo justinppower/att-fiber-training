@@ -677,6 +677,11 @@ body {
       </div>
 
       <div class="sidebar-section">
+        <div class="sidebar-title">Advanced</div>
+        <div class="nav-item" onclick="showPage('closer')">Closer Training Supplement</div>
+      </div>
+
+      <div class="sidebar-section">
         <div class="sidebar-title">Resources</div>
         <div class="nav-item" onclick="showPage('quick-ref')">Quick Reference Card</div>
         <div class="nav-item" onclick="showPage('trainer-key')">Trainer Answer Key</div>
@@ -1512,6 +1517,170 @@ body {
         </div>
       </div>
 
+      <!-- CLOSER TRAINING SUPPLEMENT PAGE -->
+      <div id="closer" class="page">
+        <h1 class="page-title">Closer Training Supplement</h1>
+        <p class="page-subtitle">Practical knowledge from live training sessions — essential for closers</p>
+
+        <div class="card">
+          <h2>SECTION 1: ADI — Managed vs Unmanaged Routers (Critical Knowledge)</h2>
+
+          <h3>Managed Router (AT&T Provided)</h3>
+          <p>AT&T monitors and manages the router. If something fails, AT&T detects and resolves it. <strong>HOWEVER — managed routers do NOT provide Wi-Fi access.</strong> If the customer needs Wi-Fi, they must provide their own additional router.</p>
+
+          <h3>Unmanaged Router (Customer Provided)</h3>
+          <p>Customer provides and manages their own router. They get Wi-Fi. But if something goes wrong with the router, it's the customer's responsibility to fix — AT&T only monitors the line, not the router.</p>
+
+          <h3>Key Question to Ask</h3>
+          <p style="font-style: italic; margin-top: 8px;">"Will you need Wi-Fi access? If so, the unmanaged option lets you use your own router with Wi-Fi, or with managed, you'll need a separate Wi-Fi router."</p>
+
+          <h3>ADI Speed Tiers</h3>
+          <p>Minimum sellable is <strong>10 Mbps</strong> (not 1.5 Mbps). Range: 10 Mbps to 1 Tbps. Most sales will be Ethernet unless customer specifically requests private line.</p>
+
+          <h3>Billing Note</h3>
+          <p><strong>First 1-2 months may be prorated and higher than quoted rate.</strong> Always set this expectation with the customer upfront.</p>
+
+          <h3>Standard Features Included</h3>
+          <p>24/7/365 network monitoring, primary and secondary IP addresses, flexible billing arrangements.</p>
+        </div>
+
+        <div class="card">
+          <h2>SECTION 2: APBA — The Fire Alarm Rule (Non-Negotiable)</h2>
+          <p style="font-size: 1.1em; font-weight: bold; color: #e74c3c;">If a customer says FIRE ALARM → APBA is the ONLY solution. No exceptions.</p>
+
+          <h3>Product-to-Service Line Mapping</h3>
+          <table>
+            <thead>
+              <tr><th>Service/Line Type</th><th>Product to Use</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Fire Alarm</td><td><strong>APBA (only option)</strong></td><td>Only product with fire alarm certification</td></tr>
+              <tr><td>Fax Machine</td><td>APBA (preferred)</td><td>Can work with ADIVB in some cases</td></tr>
+              <tr><td>Elevator Lines</td><td>APBA</td><td>Specialty data line</td></tr>
+              <tr><td>Point of Sale (POS)</td><td>APBA</td><td>Specialty data line</td></tr>
+              <tr><td>Security Gate/Call Box</td><td>APBA</td><td>Specialty data line</td></tr>
+              <tr><td>Voice Lines</td><td>ADIVB or O@H + ADI</td><td>Do NOT use APBA for voice</td></tr>
+              <tr><td>Voice + Fire Alarm (same customer)</td><td>ADI + APBA (no ADIVB)</td><td>Loop in Sahil for guidance</td></tr>
+            </tbody>
+          </table>
+
+          <h3>APBA Key Facts</h3>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li><strong>APBA as a Service (AES):</strong> monthly recurring charge only — no upfront equipment cost</li>
+            <li><strong>24-hour battery backup</strong> built in (critical for fire alarms — keeps working during power outage)</li>
+            <li>Can connect <strong>up to 6 lines</strong> per device</li>
+            <li><strong>Site survey needed for 5+ lines ($350)</strong></li>
+            <li>No installation costs</li>
+            <li>Can use LTE or wired internet connection — wired preferred for reliability</li>
+            <li><strong>VAB-1 device</strong> with 24-hour battery backup, offered exclusively by AT&T</li>
+            <li>If customer has more than voice + fire alarm, <strong>loop in Sahil</strong> to determine best solution</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>SECTION 3: Office@Hand — Licensing & Technical Requirements</h2>
+          <p>Cloud-based phone service — works from any device (desk phone, tablet, mobile, PC)</p>
+
+          <h3>Pricing</h3>
+          <p><strong>Per LICENSE, not per user.</strong> One license = one phone number that can ring on multiple devices.</p>
+          <p style="margin-top: 8px;"><strong>Example:</strong> 3 licenses = 3 phone numbers, but can be used across 5+ devices</p>
+
+          <h3>Admin Control</h3>
+          <p>Admins can add/remove users without contacting AT&T.</p>
+
+          <h3>VoIP Phones</h3>
+          <p>Customers do NOT need to buy from AT&T. They can purchase compatible VoIP phones from any retailer (Amazon, eBay, etc.) <strong>BUT the phone must be on the AT&T CPE (Customer Premises Equipment) compatibility list.</strong></p>
+
+          <h3>Internet Requirement</h3>
+          <p>Requires internet with <strong>QoS (Quality of Service)</strong> enabled. ADI has QoS built in. If customer uses non-AT&T internet, verify it supports QoS for voice priority.</p>
+
+          <h3>Key Feature</h3>
+          <p>One number for fax, SMS, video conferencing, and calls across all devices.</p>
+        </div>
+
+        <div class="card">
+          <h2>SECTION 4: Closer Sales Structure (Multi-Call Approach)</h2>
+          <p><strong>EXPECTATION:</strong> Most deals require multiple calls to close. First call = discovery and probing.</p>
+
+          <h3>First Call Priorities</h3>
+          <ol style="margin-left: 20px; margin-top: 12px;">
+            <li>Identify the right contact (not just decision-maker — need person who knows what lines are used for, e.g., building department, office manager)</li>
+            <li>Additional discovery beyond what appointment setter gathered</li>
+            <li>Document every line and what it's used for</li>
+            <li>Determine if customer has special services (alarms, elevators, fax, POS)</li>
+          </ol>
+
+          <h3>Call Opening Script for Closers</h3>
+          <p style="font-style: italic; margin-top: 8px;">"Hi, this is [Name] calling from FiberConnect on behalf of AT&T on a recorded line. You spoke with [Appointment Setter Name] who set up this appointment to discuss your phone lines. I'm looking to speak with [Contact Name] to continue that conversation."</p>
+          <p style="margin-top: 8px;"><strong>Why This Matters:</strong> When your call sounds like a NEW call, it's harder to get information. Always reference the prior conversation.</p>
+
+          <h3>Urgency Positioning</h3>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li><em>"Your rates are subject to increase by the end of the year. We want to provide you with a solution that fits your business and prevents another rate increase."</em></li>
+            <li><em>"Year over year, you've been calling in to negotiate when prices go up. This transition helps lock in promotional rates."</em></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>SECTION 5: Line Discovery & Documentation (Critical for Closers)</h2>
+          <p style="font-weight: bold; color: #e74c3c;">You MUST know what EVERY line is used for before proposing a solution.</p>
+          <p style="margin-top: 8px;">AT&T does not track what customers use their lines for — only the customer knows.</p>
+          <p style="margin-top: 8px;"><strong>Ask:</strong> <em>"Can you walk me through each of your phone lines and what they're being used for?"</em></p>
+
+          <h3>Document in CRM Notes Using This Format</h3>
+          <div style="background: rgba(0,200,255,0.08); padding: 16px; border-radius: 8px; margin-top: 8px; font-family: monospace; font-size: 0.9em;">
+            Line 1: (555) 123-4567 — Voice<br>
+            Line 2: (555) 123-4568 — Fax<br>
+            Line 3: (555) 123-4569 — Fire Alarm<br>
+            Line 4: (555) 123-4570 — POS Terminal
+          </div>
+          <p style="margin-top: 12px;">If customer has 10+ lines, at minimum <strong>GROUP them:</strong> "3 voice lines, 2 fax lines, 1 fire alarm, 4 POS"</p>
+          <p style="margin-top: 8px;">This documentation is <strong>ESSENTIAL</strong> for your order summary and solution proposal.</p>
+        </div>
+
+        <div class="card">
+          <h2>SECTION 6: LOA Process (Letter of Authorization)</h2>
+          <p><strong>LOA is REQUIRED</strong> before you can retrieve any account information from channel managers.</p>
+
+          <h3>How to Send LOA</h3>
+          <ul style="margin-left: 20px; margin-top: 12px;">
+            <li>Templates are pre-loaded in <strong>Zoho CRM</strong> under email templates (public templates)</li>
+            <li>Hit "Send Email" on the lead → "Insert Template" → Select LOA template</li>
+          </ul>
+
+          <p style="margin-top: 12px; font-weight: bold; color: #e74c3c;">CRITICAL: Only change the COMPANY NAME on the template. Do NOT change any other wording, even if grammar seems incorrect — this is the AT&T-approved format.</p>
+
+          <h3>CPNI Rule</h3>
+          <p>If CPNI was NOT read to the customer, <strong>REMOVE the section that shows account number and MRC</strong> before sending. This protects sensitive account information.</p>
+          <p style="margin-top: 8px;">LOA must be signed/responded to before you can share pricing details with the customer.</p>
+        </div>
+
+        <div class="card">
+          <h2>SECTION 7: CRM Best Practices for Closers</h2>
+
+          <table>
+            <thead>
+              <tr><th>Best Practice</th><th>Details</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Start each day from HOME TAB in Zoho</strong></td><td>Shows all prioritized tasks, calls, and meetings for the day</td></tr>
+              <tr><td><strong>Create a task/meeting/call for EVERY follow-up</strong></td><td>No call should exist without a next action unless contract is signed</td></tr>
+              <tr><td><strong>Note-taking format</strong></td><td>List each line number + its purpose. Include contact names, best times to reach, and special circumstances</td></tr>
+              <tr><td><strong>After contract signature</strong></td><td>Everything is sent to the customer's email AND copied to your email for follow-up tracking</td></tr>
+            </tbody>
+          </table>
+
+          <h3>CRM Pipeline Stages</h3>
+          <p style="margin-top: 8px;"><strong>Discovery → Solution Proposed → LOA Signed → Contract Sent → Signed → Installation Scheduled</strong></p>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #00c8ff;">
+          <h2>📝 Closer Training Quiz</h2>
+          <p>Test your knowledge of closer-specific processes and product details. Pass mark: <span style="color: #00c8ff; font-weight: bold;">80%</span> (12 out of 15 questions)</p>
+          <button class="btn btn-primary" onclick="renderQuiz('closer-quiz')" style="margin-top: 12px;">Start Closer Training Quiz</button>
+        </div>
+      </div>
+
       <!-- QUICK REFERENCE CARD PAGE -->
       <div id="quick-ref" class="page">
         <h1 class="page-title">Quick Reference Card</h1>
@@ -1807,6 +1976,37 @@ body {
         </div>
 
         <div class="card">
+          <h2>Closer Training Supplement Quiz — Answer Key</h2>
+          <p style="color: var(--att-accent); font-weight: 600; margin-bottom: 12px;">15 Questions — Pass Mark: 80% (12/15)</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Q#</th>
+                <th>Correct Answer</th>
+                <th>Explanation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>B) Managed routers do NOT provide Wi-Fi</td><td>Customer must provide their own Wi-Fi router if needed.</td></tr>
+              <tr><td>2</td><td>C) Customer gets Wi-Fi access and full control</td><td>Unmanaged routers give the customer Wi-Fi access and full control over the device.</td></tr>
+              <tr><td>3</td><td>B) 10 Mbps</td><td>The minimum sellable ADI speed tier is 10 Mbps, not 1.5 Mbps.</td></tr>
+              <tr><td>4</td><td>B) APBA (only product with fire alarm certification)</td><td>APBA is the ONLY product with fire alarm certification. Non-negotiable.</td></tr>
+              <tr><td>5</td><td>C) Fire alarm, POS, and elevator lines</td><td>APBA is used for specialty services. Do NOT use APBA for voice.</td></tr>
+              <tr><td>6</td><td>B) Up to 6 lines (site survey needed for 5+)</td><td>APBA can connect up to 6 lines per device. Site survey ($350) needed for 5+.</td></tr>
+              <tr><td>7</td><td>B) Per license — one phone number on multiple devices</td><td>Office@Hand is priced per license, not per user.</td></tr>
+              <tr><td>8</td><td>B) Buy from any retailer, must be on AT&T CPE list</td><td>VoIP phones can be purchased anywhere but must be compatible.</td></tr>
+              <tr><td>9</td><td>B) Prioritizes voice traffic over other internet traffic</td><td>QoS ensures call quality over other internet usage.</td></tr>
+              <tr><td>10</td><td>B) Reference the appointment setter by name</td><td>Maintains conversation continuity and builds credibility.</td></tr>
+              <tr><td>11</td><td>B) Document every line and its purpose</td><td>Essential before proposing any solution.</td></tr>
+              <tr><td>12</td><td>B) Rate increases as urgency driver</td><td>"Your rates are subject to increase by year-end. Lock in promotional rates now."</td></tr>
+              <tr><td>13</td><td>B) Only change the company name</td><td>Do NOT change any other wording — it's the AT&T-approved format.</td></tr>
+              <tr><td>14</td><td>B) If CPNI was NOT read to the customer</td><td>Remove account number and MRC to protect sensitive data.</td></tr>
+              <tr><td>15</td><td>B) Go to HOME TAB in Zoho</td><td>Start from your HOME TAB to see all prioritized tasks, calls, and meetings.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
           <h2>Certification Passing Criteria</h2>
           <table>
             <thead>
@@ -1836,6 +2036,11 @@ body {
                 <td>Day 5 Final Certification</td>
                 <td>43/50</td>
                 <td>86%</td>
+              </tr>
+              <tr>
+                <td>Closer Training Supplement</td>
+                <td>12/15</td>
+                <td>80%</td>
               </tr>
             </tbody>
           </table>
@@ -1983,6 +2188,28 @@ const quizData = {
       { text: 'Copper-to-fiber positioning highlights:', options: ['Copper is better', 'Fiber is evolution; copper retiring; act now for rates', 'No difference', 'Copper is mandatory'], answer: 1 },
       { text: 'O@H licensing model is:', options: ['Per device', 'Per user (one license = one number on multiple devices)', 'Per company', 'Per phone'], answer: 1 },
       { text: 'Final certification requires passing:', options: ['Day 1 quiz only', 'Day 1, 2, 4 quizzes + Day 5 exam all at required %', 'Just showing up', 'Only Day 5'], answer: 1 }
+    ]
+  },
+
+  'closer-quiz': {
+    title: 'Closer Training Supplement Quiz',
+    passMark: 80,
+    questions: [
+      { text: 'A customer asks about a managed router from AT&T. Which of the following is TRUE?', options: ['Managed routers provide Wi-Fi access to the customer', 'Managed routers do NOT provide Wi-Fi access; customer must provide their own', 'Managed routers handle Wi-Fi but AT&T charges extra for it', 'Managed routers are optional; customers can choose unmanaged instead'], answer: 1 },
+      { text: 'What is the PRIMARY advantage of an unmanaged router?', options: ['AT&T monitors the router for you', 'No maintenance required on the customer\'s part', 'Customer gets Wi-Fi access and full control', 'It costs less than a managed router'], answer: 2 },
+      { text: 'What is the MINIMUM sellable ADI speed tier?', options: ['1.5 Mbps', '10 Mbps', '50 Mbps', '100 Mbps'], answer: 1 },
+      { text: 'A customer mentions they need a fire alarm system. Which product should you recommend?', options: ['ADIVB', 'APBA (only product with fire alarm certification)', 'Office@Hand', 'Either APBA or ADIVB, whichever is cheaper'], answer: 1 },
+      { text: 'Which of the following should use APBA?', options: ['General voice lines', 'Video conferencing calls', 'Fire alarm system, point of sale (POS), and elevator lines', 'All of the above'], answer: 2 },
+      { text: 'What is the maximum number of lines that can connect to a single APBA device?', options: ['2 lines', 'Up to 6 lines (site survey needed for 5+)', '10 lines', 'Unlimited'], answer: 1 },
+      { text: 'How is Office@Hand licensing structured?', options: ['Per user — each user needs one license', 'Per license — one license = one phone number that can ring on multiple devices', 'Per device — each device needs its own license', 'All-you-can-use with a flat monthly fee'], answer: 1 },
+      { text: 'A customer wants to buy a VoIP phone for Office@Hand. What should you tell them?', options: ['They must buy from AT&T', 'They can buy from any retailer, but it must be on the AT&T CPE compatibility list', 'Any VoIP phone will work with Office@Hand', 'VoIP phones are included with Office@Hand'], answer: 1 },
+      { text: 'What is QoS (Quality of Service) in the context of Office@Hand?', options: ['A monthly fee structure', 'A feature that prioritizes voice traffic over other internet traffic', 'A device that connects phones to the internet', 'An insurance coverage option'], answer: 1 },
+      { text: 'When calling a customer as a closer, what should you do to reference the prior conversation?', options: ['Make it clear it\'s a new call to establish fresh context', 'Reference the appointment setter by name and mention their conversation', 'Assume they remember what was discussed before', 'Start from scratch with all discovery questions'], answer: 1 },
+      { text: 'What is the MOST important step before proposing a solution?', options: ['Check the customer\'s credit score', 'Document every line and what it\'s used for', 'Send them pricing options immediately', 'Schedule the installation'], answer: 1 },
+      { text: 'What is an effective urgency driver for this sales conversation?', options: ['"You need to sign today or the offer expires"', '"Your rates are subject to increase by the end of the year; this transition locks in promotional rates"', '"This is the cheapest deal you\'ll ever get"', '"Our company is going out of business soon"'], answer: 1 },
+      { text: 'When customizing an LOA template in Zoho CRM, what can you change?', options: ['The company name, signature section, and wording for clarity', 'Only the company name — do NOT change any other wording', 'Everything except the signature line', 'Nothing; you must use the exact template as-is'], answer: 1 },
+      { text: 'When should you remove the account number and MRC from an LOA before sending?', options: ['Always remove it to protect privacy', 'If CPNI was NOT read to the customer', 'Never remove it; it\'s required', 'Only if the customer is a small business'], answer: 1 },
+      { text: 'What should you do at the START of your day as a closer?', options: ['Check your email inbox', 'Go to your HOME TAB in Zoho to see prioritized tasks, calls, and meetings', 'Call your manager to report status', 'Update your social media'], answer: 1 }
     ]
   }
 };
@@ -2190,6 +2417,7 @@ function loadProgress() {
     { id: 'day1-quiz', label: 'Day 1 Quiz', total: 20 },
     { id: 'day2-quiz', label: 'Day 2 Quiz', total: 15 },
     { id: 'day4-quiz', label: 'Day 4 Quiz', total: 20 },
+    { id: 'closer-quiz', label: 'Closer Supplement', total: 15 },
     { id: 'day5-final', label: 'Final Exam', total: 50 }
   ];
 
