@@ -1915,7 +1915,7 @@ const quizData = {
       { text: '"I\'m already in the process of switching." — Your action:', options: ['End the call', 'Ask which service they\'re switching to and reference the number', 'Do nothing', 'Tell them to cancel'], answer: 1 },
       { text: '"I don\'t have AT&T copper service." — Best response:', options: ['"Then we can\'t help"', '"Records show AT&T service at your location—let me verify"', '"Wrong number"', '"You must"'], answer: 1 },
       { text: '"I don\'t want/need fiber." — Best response:', options: ['"You\'re wrong"', '"Copper is being retired—planning now prevents service disruption"', '"Fiber is mandatory"', '"That\'s old-fashioned thinking"'], answer: 1 },
-      { text: '"Is this mandatory?" — Best response:', options: ['"Yes, everyone must switch"', '"Not yet, but copper is being phased out—act now"', ['"No", no action'], answer: 1 },
+      { text: '"Is this mandatory?" — Best response:', options: ['"Yes, everyone must switch"', '"Not yet, but copper is being phased out—act now"', '"No" and take no action', '"It depends on your area"'], answer: 1 },
       { text: 'LOA (Letter of Authorization) is a(n):', options: ['Optional request', 'Standard AT&T requirement to authorize service changes', 'Marketing material', 'Billing document'], answer: 1 },
       { text: 'The Summary Close would be:', options: ['"Buy now"', '"Let me recap: you need uptime, APBA provides it—ready?"', '"I think you should switch"', '"Maybe call us later"'], answer: 1 },
       { text: 'The Trial Close would be:', options: ['"Our service is free to try"', '"If we install by next month with zero downtime, would that work?"', '"Trial period is 30 days"', '"Try calling us next year"'], answer: 1 },
@@ -1947,7 +1947,7 @@ const quizData = {
       { text: 'When asked "What is this regarding?" by gatekeeper, say:', options: ['"Confidential"', '"It\'s regarding a project with their department"', '"Sales call"', '"I can only tell them"'], answer: 1 },
       { text: 'Using the gatekeeper\'s name builds:', options: ['Suspicion', 'Rapport and cooperation', 'Distance', 'Formality'], answer: 1 },
       { text: 'Pattern interrupt in gatekeeper approach means:', options: ['Interrupting them', 'Breaking normal sales behavior ("I don\'t want to waste your time")', 'Being rude', 'Being suspicious'], answer: 1 },
-      { text: 'A key discovery question is:', options: ['"Do you like us?"', '"What challenges are you facing with network performance?"', ['"How are you?"', null]], answer: 1 },
+      { text: 'A key discovery question is:', options: ['"Do you like us?"', '"What challenges are you facing with network performance?"', '"How are you?"', '"What is your company name?"'], answer: 1 },
       { text: 'Active listening requires:', options: ['Talking more', 'Paying attention, adding value, being empathetic, summarizing', 'Silence', 'Taking notes constantly'], answer: 1 },
       { text: 'After discovery, identify:', options: ['Just the pain points', 'Pain points AND budget/decision authority', 'Just budget', 'Just contact info'], answer: 1 },
       { text: 'The SPIN framework stage "Implication" focuses on:', options: ['Current situation', 'Challenges they face', 'Consequences of their problems', 'Solutions available'], answer: 2 },
@@ -1961,14 +1961,14 @@ const quizData = {
       { text: 'When opening a closer call:', options: ['"Hi, let\'s buy"', '"Hi [Name], this is [You]. Sarah discussed [topic]. I want to dive deeper. Do you have 15 min?"', '"You ready to sign?"', '"Let me pitch"'], answer: 1 },
       { text: 'Objection "You are not AT&T" response:', options: ['"We are too"', '"We\'re certified AT&T Alliance Partners offering personalized support"', '"Leave me alone"', '"Call AT&T directly"'], answer: 1 },
       { text: 'Objection "Already have fiber" response:', options: ['"No you don\'t"', '"Your account shows copper active—let me verify"', '"Too bad"', '"Upgrade anyway"'], answer: 1 },
-      { text: 'Objection "Not interested" response:', options: ['"Too bad"', '"Copper is being phased out—transition now for rates"', ['"Okay"', null]], answer: 1 },
+      { text: 'Objection "Not interested" response:', options: ['"Too bad"', '"Copper is being phased out—transition now for rates"', '"Okay, have a good day"', '"I understand, but you should reconsider"'], answer: 1 },
       { text: 'Objection "Phones go down if internet fails" response:', options: ['"Move to cellular"', '"APBA with 24hr battery + LTE failover; O@H on multiple devices"', '"Can\'t fix that"', '"Not a real issue"'], answer: 1 },
       { text: 'Objection "Already have AT&T rep" response:', options: ['"Replace them"', '"We\'re providing extra support, not replacing them"', '"We\'re done then"', '"Fire them"'], answer: 1 },
       { text: 'When customer says "Planning to switch": you should:', options: ['Give up', 'Ask why and compare offerings', 'Be silent', 'Argue'], answer: 1 },
       { text: 'When customer says "Already switching": you should:', options: ['Accept it', 'Ask service/reference number and compare', 'Hang up', 'Yell at them'], answer: 1 },
       { text: 'LOA is:', options: ['Optional marketing', 'Standard AT&T requirement to authorize changes', 'A contract', 'Billing form'], answer: 1 },
       { text: 'CPNI rules mean LOA can:', options: ['Change anything on account', 'Only change company name; no unrelated services', 'Add anything', 'Nothing specific'], answer: 1 },
-      { text: 'The Summary Close phrase:', options: ['"Buy now"', '"Let me recap: [needs], [solution]—ready?"', ['"Maybe later"', null]], answer: 1 },
+      { text: 'The Summary Close phrase:', options: ['"Buy now"', '"Let me recap: [needs], [solution]—ready?"', '"Maybe later"', '"Let me think about it"'], answer: 1 },
       { text: 'The Trial Close phrase:', options: ['"Free trial"', '"If [timeline], would that work?"', '"Try it free"', '"Later"'], answer: 1 },
       { text: 'The Alternative Choice Close:', options: ['"Pick anything"', '"Which appeals: [Option A] or [Option B]?"', '"You choose for me"', '"No options"'], answer: 1 },
       { text: 'When customer hesitates after close:', options: ['Hang up', 'Ask "What would make you comfortable moving forward?"', 'Pressure them', 'Go silent'], answer: 1 },
@@ -2025,7 +2025,11 @@ function showPage(pageId) {
   document.getElementById(pageId).classList.add('active');
 
   document.querySelectorAll('.nav-item').forEach(ni => ni.classList.remove('active'));
-  event.target.classList.add('active');
+  // Find the nav item that targets this page and highlight it
+  const clickedNav = event && event.target ? event.target.closest('.nav-item') : null;
+  if (clickedNav) {
+    clickedNav.classList.add('active');
+  }
 
   window.scrollTo(0, 0);
 }
