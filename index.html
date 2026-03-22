@@ -2031,9 +2031,46 @@ function showPage(pageId) {
 }
 
 // QUIZ SYSTEM
+
+// Fisher-Yates shuffle — returns a new shuffled array
+function shuffleArray(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Store shuffle mappings per quiz so grading works correctly
+const quizShuffleMaps = {};
+
 function renderQuiz(quizId) {
   const quiz = quizData[quizId];
   if (!quiz) return;
+
+  // Create shuffled question order
+  const questionIndices = quiz.questions.map((_, i) => i);
+  const shuffledQuestionOrder = shuffleArray(questionIndices);
+
+  // For each question, create shuffled option order and track where the correct answer lands
+  const optionMaps = {};
+  shuffledQuestionOrder.forEach((origQIdx, displayIdx) => {
+    const q = quiz.questions[origQIdx];
+    const optionIndices = q.options.map((_, i) => i);
+    const shuffledOptionOrder = shuffleArray(optionIndices);
+    optionMaps[displayIdx] = {
+      origQuestionIdx: origQIdx,
+      optionOrder: shuffledOptionOrder  // shuffledOptionOrder[displayOptIdx] = origOptIdx
+    };
+  });
+
+  // Store the mapping for grading
+  quizShuffleMaps[quizId] = {
+    questionOrder: shuffledQuestionOrder,
+    optionMaps: optionMaps,
+    selections: {}
+  };
 
   const contentArea = document.querySelector('.content-area');
   let html = `<div class="quiz-container">
@@ -2042,15 +2079,18 @@ function renderQuiz(quizId) {
       <div class="quiz-progress">Question <span class="current">1</span> of ${quiz.questions.length}</div>
     </div>`;
 
-  quiz.questions.forEach((q, idx) => {
-    html += `<div class="question-card" data-question="${idx}">
-      <div class="question-number">Question ${idx + 1}</div>
+  shuffledQuestionOrder.forEach((origQIdx, displayIdx) => {
+    const q = quiz.questions[origQIdx];
+    const shuffledOpts = optionMaps[displayIdx].optionOrder;
+
+    html += `<div class="question-card" data-question="${displayIdx}">
+      <div class="question-number">Question ${displayIdx + 1}</div>
       <div class="question-text">${q.text}</div>`;
 
-    q.options.forEach((opt, oi) => {
-      html += `<div class="answer-option" onclick="selectOption(this, ${quizId}, ${idx}, ${oi})">
+    shuffledOpts.forEach((origOptIdx, displayOptIdx) => {
+      html += `<div class="answer-option" onclick="selectOption(this, '${quizId}', ${displayIdx}, ${displayOptIdx})">
         <div class="answer-radio"></div>
-        <div>${opt}</div>
+        <div>${q.options[origOptIdx]}</div>
       </div>`;
     });
 
@@ -2065,23 +2105,30 @@ function renderQuiz(quizId) {
   contentArea.innerHTML = html;
 }
 
-function selectOption(el, quizId, questionIdx, optionIdx) {
+function selectOption(el, quizId, displayQIdx, displayOptIdx) {
   const options = el.parentElement.querySelectorAll('.answer-option');
   options.forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
 
-  // Store selection
-  const quiz = quizData[quizId];
-  quiz.questions[questionIdx].selected = optionIdx;
+  // Store selection using display indices (mapped back during grading)
+  quizShuffleMaps[quizId].selections[displayQIdx] = displayOptIdx;
 }
 
 function gradeQuiz(quizId) {
   const quiz = quizData[quizId];
   const agentName = localStorage.getItem('agent_name');
   let correct = 0;
+  const shuffleMap = quizShuffleMaps[quizId];
 
-  quiz.questions.forEach((q, idx) => {
-    if (q.selected === q.answer) correct++;
+  quiz.questions.forEach((q, origIdx) => {
+    // Find which display index this original question was shown at
+    const displayQIdx = shuffleMap.questionOrder.indexOf(origIdx);
+    const selectedDisplayOpt = shuffleMap.selections[displayQIdx];
+    if (selectedDisplayOpt !== undefined) {
+      // Map the displayed option index back to the original option index
+      const origOptIdx = shuffleMap.optionMaps[displayQIdx].optionOrder[selectedDisplayOpt];
+      if (origOptIdx === q.answer) correct++;
+    }
   });
 
   const percentage = Math.round((correct / quiz.questions.length) * 100);
