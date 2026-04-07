@@ -167,8 +167,7 @@ body {
 
 .main-content {
   display: flex;
-  height: calc(100vh - 70px);
-  overflow: hidden;
+  min-height: calc(100vh - 70px);
 }
 
 /* ── SIDEBAR NAVIGATION ── */
@@ -178,8 +177,6 @@ body {
   border-right: 1px solid var(--card-border);
   overflow-y: auto;
   padding: 24px 0;
-  flex-shrink: 0;
-  height: 100%;
 }
 
 .sidebar-section {
@@ -589,7 +586,7 @@ body {
   background: var(--card-border);
   border-radius: 4px;
   margin: 12px 0;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .progress-bar-fill {
@@ -667,27 +664,27 @@ body {
     <div class="sidebar">
       <div class="sidebar-section">
         <div class="sidebar-title">Overview</div>
-        <div class="nav-item active" onclick="document.getElementById('quiz-results-overlay').style.display='none'">📊 Dashboard</div>
+        <div class="nav-item active" onclick="showPage('overview')">📊 Dashboard</div>
       </div>
 
       <div class="sidebar-section">
         <div class="sidebar-title">Training Days</div>
-        <div class="nav-item" onclick="document.getElementById('quiz-results-overlay').style.display='none'">Day 1: Product Knowledge</div>
-        <div class="nav-item" onclick="document.getElementById('quiz-results-overlay').style.display='none'">Day 2: Discovery & Gatekeeper</div>
-        <div class="nav-item" onclick="document.getElementById('quiz-results-overlay').style.display='none'">Day 3: Solution Presentation</div>
-        <div class="nav-item" onclick="document.getElementById('quiz-results-overlay').style.display='none'">Day 4: Objection Handling</div>
-        <div class="nav-item" onclick="document.getElementById('quiz-results-overlay').style.display='none'">Day 5: Certification</div>
+        <div class="nav-item" onclick="showPage('day1')">Day 1: Product Knowledge</div>
+        <div class="nav-item" onclick="showPage('day2')">Day 2: Discovery & Gatekeeper</div>
+        <div class="nav-item" onclick="showPage('day3')">Day 3: Solution Presentation</div>
+        <div class="nav-item" onclick="showPage('day4')">Day 4: Objection Handling</div>
+        <div class="nav-item" onclick="showPage('day5')">Day 5: Certification</div>
       </div>
 
       <div class="sidebar-section">
         <div class="sidebar-title">Advanced</div>
-        <div class="nav-item" onclick="document.getElementById('quiz-results-overlay').style.display='none'">Closer Training Supplement</div>
+        <div class="nav-item" onclick="showPage('closer')">Closer Training Supplement</div>
       </div>
 
       <div class="sidebar-section">
         <div class="sidebar-title">Resources</div>
-        <div class="nav-item" onclick="document.getElementById('quiz-results-overlay').style.display='none'">Quick Reference Card</div>
-        <div class="nav-item" onclick="document.getElementById('quiz-results-overlay').style.display='none'">Trainer Answer Key</div>
+        <div class="nav-item" onclick="showPage('quick-ref')">Quick Reference Card</div>
+        <div class="nav-item" onclick="showPage('trainer-key')">Trainer Answer Key</div>
       </div>
     </div>
 
@@ -926,7 +923,7 @@ body {
         <div class="card">
           <h2>📝 Day 1 Quiz</h2>
           <p>Test your knowledge of the AT&T Fiber product portfolio. Pass mark: <span class="highlight">80%</span> (16 out of 20 questions)</p>
-          <button class="btn btn-primary" onclick="document.getElementById('quiz-results-overlay').style.display='none'; renderQuiz('day1-quiz')">Start Day 1 Quiz</button>
+          <button class="btn btn-primary" onclick="renderQuiz('day1-quiz')">Start Day 1 Quiz</button>
         </div>
       </div>
 
@@ -1087,7 +1084,7 @@ body {
         <div class="card">
           <h2>📝 Day 2 Quiz</h2>
           <p>Test your gatekeeper and discovery mastery. Pass mark: <span class="highlight">80%</span> (12 out of 15 questions)</p>
-          <button class="btn btn-primary" onclick="document.getElementById('quiz-results-overlay').style.display='none'; renderQuiz('day2-quiz')">Start Day 2 Quiz</button>
+          <button class="btn btn-primary" onclick="renderQuiz('day2-quiz')">Start Day 2 Quiz</button>
         </div>
       </div>
 
@@ -1383,7 +1380,7 @@ body {
         <div class="card">
           <h2>📝 Day 4 Quiz</h2>
           <p>Test your objection handling and closing mastery. Pass mark: <span class="highlight">85%</span> (17 out of 20 questions)</p>
-          <button class="btn btn-primary" onclick="document.getElementById('quiz-results-overlay').style.display='none'; renderQuiz('day4-quiz')">Start Day 4 Quiz</button>
+          <button class="btn btn-primary" onclick="renderQuiz('day4-quiz')">Start Day 4 Quiz</button>
         </div>
       </div>
 
@@ -1516,7 +1513,7 @@ body {
           <h2>SESSION 3: Final Certification Exam</h2>
           <p><strong>50 Multiple Choice Questions | 60 Minute Time Limit | Pass Mark: 85% (43 out of 50)</strong></p>
           <p style="margin-top: 16px;">This comprehensive exam covers all 5 days of training. You must pass to be certified as an AT&T Fiber Sales professional.</p>
-          <button class="btn btn-primary" onclick="document.getElementById('quiz-results-overlay').style.display='none'; renderQuiz('day5-final')">Start Final Certification Exam</button>
+          <button class="btn btn-primary" onclick="renderQuiz('day5-final')">Start Final Certification Exam</button>
         </div>
       </div>
 
@@ -1680,7 +1677,7 @@ body {
         <div class="card" style="border-left: 4px solid #00c8ff;">
           <h2>📝 Closer Training Quiz</h2>
           <p>Test your knowledge of closer-specific processes and product details. Pass mark: <span style="color: #00c8ff; font-weight: bold;">80%</span> (12 out of 15 questions)</p>
-          <button class="btn btn-primary" onclick="document.getElementById('quiz-results-overlay').style.display='none'; renderQuiz('closer-quiz')" style="margin-top: 12px;">Start Closer Training Quiz</button>
+          <button class="btn btn-primary" onclick="renderQuiz('closer-quiz')" style="margin-top: 12px;">Start Closer Training Quiz</button>
         </div>
       </div>
 
@@ -2251,16 +2248,18 @@ function logout() {
 
 // NAVIGATION
 function showPage(pageId) {
-  const targetPage = document.getElementById(pageId);
-  if (!targetPage) return;
+      const page = document.getElementById(pageId);
+      if (!page) return;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  targetPage.classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(ni => {
-    if (!ni) return;
-    ni.classList.remove('active');
-    const onclickAttr = ni.getAttribute('onclick') || '';
-    if (onclickAttr.includes(pageId)) { ni.classList.add('active'); }
-  });
+  document.getElementById(pageId).classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach(ni => ni.classList.remove('active'));
+  // Find the nav item that targets this page and highlight it
+  const clickedNav = event && event.target ? event.target.closest('.nav-item') : null;
+  if (clickedNav) {
+    clickedNav.classList.add('active');
+  }
+
   window.scrollTo(0, 0);
 }
 
@@ -2336,15 +2335,7 @@ function renderQuiz(quizId) {
     <button class="btn btn-primary" onclick="gradeQuiz('${quizId}')">Submit Quiz</button>
   </div></div>`;
 
-  let overlay = document.getElementById('quiz-results-overlay');
-  if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.id = 'quiz-results-overlay';
-    overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,15,30,0.95);z-index:9999;display:flex;align-items:center;justify-content:center;overflow-y:auto;padding:40px;';
-    document.body.appendChild(overlay);
-  }
-  overlay.innerHTML = html;
-  overlay.style.display = 'flex';
+  contentArea.innerHTML = html;
 }
 
 function selectOption(el, quizId, displayQIdx, displayOptIdx) {
@@ -2412,11 +2403,24 @@ function gradeQuiz(quizId) {
     </div>
     <div class="btn-group">
       <button class="btn btn-secondary" onclick="location.reload()">Return to Training</button>
-      ${!passed ? `<button class="btn btn-primary" onclick="document.getElementById('quiz-results-overlay').style.display='none'; renderQuiz('${quizId}')">Retake Quiz</button>` : ''}
+      ${!passed ? `<button class="btn btn-primary" onclick="renderQuiz('${quizId}')">Retake Quiz</button>` : ''}
     </div>
   </div>`;
 
-  // Overlay handles results
+  // Show results in overlay instead of replacing page content
+    let overlay = document.getElementById('quiz-results-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'quiz-results-overlay';
+      overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:10000;display:flex;align-items:center;justify-content:center;overflow-y:auto;';
+      document.body.appendChild(overlay);
+    }
+    const inner = document.createElement('div');
+    inner.style.cssText = 'background:#fff;border-radius:12px;padding:30px;max-width:700px;width:90%;max-height:90vh;overflow-y:auto;margin:20px;';
+    inner.innerHTML = html;
+    overlay.innerHTML = '';
+    overlay.appendChild(inner);
+    overlay.style.display = 'flex';
 }
 
 // PROGRESS TRACKING
