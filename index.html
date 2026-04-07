@@ -2305,7 +2305,7 @@ function renderQuiz(quizId) {
     selections: {}
   };
 
-  const contentArea = document.querySelector('.content-area');
+  
   let html = `<div class="quiz-container">
     <div class="quiz-header">
       <h2 style="margin: 0;">${quiz.title}</h2>
@@ -2335,7 +2335,20 @@ function renderQuiz(quizId) {
     <button class="btn btn-primary" onclick="gradeQuiz('${quizId}')">Submit Quiz</button>
   </div></div>`;
 
-  contentArea.innerHTML = html;
+  // Show quiz in overlay to preserve page content
+    let quizOverlay = document.getElementById('quiz-overlay');
+    if (!quizOverlay) {
+      quizOverlay = document.createElement('div');
+      quizOverlay.id = 'quiz-overlay';
+      quizOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(10,15,25,0.97);z-index:9999;display:flex;overflow-y:auto;';
+      document.body.appendChild(quizOverlay);
+    }
+    const quizInner = document.createElement('div');
+    quizInner.style.cssText = 'width:100%;max-width:900px;margin:20px auto;padding:20px;';
+    quizInner.innerHTML = html;
+    quizOverlay.innerHTML = '';
+    quizOverlay.appendChild(quizInner);
+    quizOverlay.style.display = 'flex';
 }
 
 function selectOption(el, quizId, displayQIdx, displayOptIdx) {
