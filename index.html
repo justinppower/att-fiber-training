@@ -29,7 +29,7 @@ body {
   line-height: 1.7;
 }
 
-/* ── LOGIN SCREEN ── */
+/* ââ LOGIN SCREEN ââ */
 #login-screen {
   display: flex;
   justify-content: center;
@@ -97,7 +97,7 @@ body {
   margin-top: 12px;
 }
 
-/* ── MAIN APP ── */
+/* ââ MAIN APP ââ */
 #app-container { display: none; }
 
 .app-header {
@@ -167,16 +167,19 @@ body {
 
 .main-content {
   display: flex;
-  min-height: calc(100vh - 70px);
+  height: calc(100vh - 70px);
+  overflow: hidden;
 }
 
-/* ── SIDEBAR NAVIGATION ── */
+/* ââ SIDEBAR NAVIGATION ââ */
 .sidebar {
   width: 280px;
   background: var(--att-dark);
   border-right: 1px solid var(--card-border);
   overflow-y: auto;
   padding: 24px 0;
+  flex-shrink: 0;
+  height: 100%;
 }
 
 .sidebar-section {
@@ -216,7 +219,7 @@ body {
   font-weight: 600;
 }
 
-/* ── CONTENT AREA ── */
+/* ââ CONTENT AREA ââ */
 .content-area {
   flex: 1;
   padding: 40px;
@@ -250,7 +253,7 @@ body {
   margin-bottom: 32px;
 }
 
-/* ── CARDS ── */
+/* ââ CARDS ââ */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -319,7 +322,7 @@ body {
   color: var(--att-orange);
 }
 
-/* ── QUIZ ── */
+/* ââ QUIZ ââ */
 .quiz-container {
   max-width: 900px;
 }
@@ -425,7 +428,7 @@ body {
   display: block;
 }
 
-/* ── BUTTONS ── */
+/* ââ BUTTONS ââ */
 .btn-group {
   display: flex;
   gap: 12px;
@@ -472,7 +475,7 @@ body {
   cursor: not-allowed;
 }
 
-/* ── RESULTS SCREEN ── */
+/* ââ RESULTS SCREEN ââ */
 .results-container {
   max-width: 600px;
   margin: 0 auto;
@@ -541,7 +544,7 @@ body {
   font-weight: 600;
 }
 
-/* ── PROGRESS DASHBOARD ── */
+/* ââ PROGRESS DASHBOARD ââ */
 .progress-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -595,7 +598,7 @@ body {
   transition: width 0.3s;
 }
 
-/* ── RESPONSIVE ── */
+/* ââ RESPONSIVE ââ */
 @media (max-width: 1024px) {
   .sidebar { width: 220px; }
   .content-area { padding: 24px; }
@@ -664,7 +667,7 @@ body {
     <div class="sidebar">
       <div class="sidebar-section">
         <div class="sidebar-title">Overview</div>
-        <div class="nav-item active" onclick="showPage('overview')">📊 Dashboard</div>
+        <div class="nav-item active" onclick="showPage('overview')">ð Dashboard</div>
       </div>
 
       <div class="sidebar-section">
@@ -694,15 +697,15 @@ body {
       <!-- OVERVIEW PAGE -->
       <div id="overview" class="page active">
         <h1 class="page-title">5-Day Sales Training Program</h1>
-        <p class="page-subtitle">AT&T Fiber Sales Training — Master the complete product portfolio and close more deals</p>
+        <p class="page-subtitle">AT&T Fiber Sales Training â Master the complete product portfolio and close more deals</p>
 
         <div class="card">
-          <h2>📈 Your Progress</h2>
+          <h2>ð Your Progress</h2>
           <div class="progress-grid" id="progress-display"></div>
         </div>
 
         <div class="card">
-          <h2>🎯 Training Overview</h2>
+          <h2>ð¯ Training Overview</h2>
           <p>This comprehensive 5-day training program equips you with everything needed to sell AT&T Fiber products with confidence:</p>
           <ul style="margin-left: 20px; margin-top: 12px;">
             <li><strong>Day 1:</strong> Master the complete AT&T Fiber product portfolio (ADI, ADIVB, ABV, APBA, O@H, Dynamic Defense, ABF, AIA, AWB)</li>
@@ -714,7 +717,7 @@ body {
         </div>
 
         <div class="card">
-          <h2>✅ Getting Started</h2>
+          <h2>â Getting Started</h2>
           <p>Navigate to each day's content in the sidebar. Complete the lessons, study the material, and take the quizzes when ready. You must pass each quiz with the required percentage to advance.</p>
           <p style="margin-top: 12px; color: var(--att-accent);"><strong>Pass Requirements:</strong> Day 1, 2, 4 Quizzes: 80% | Day 5 Final Exam: 85%</p>
         </div>
@@ -834,20 +837,20 @@ body {
             <tbody>
               <tr>
                 <td><strong>Managed Router</strong></td>
-                <td><span class="highlight">NO Wi-Fi</span> — Customer must provide their own</td>
+                <td><span class="highlight">NO Wi-Fi</span> â Customer must provide their own</td>
                 <td>AT&T manages, monitors, updates</td>
                 <td>Just plug in and use</td>
               </tr>
               <tr>
                 <td><strong>Unmanaged Router</strong></td>
-                <td><span class="highlight">NO Wi-Fi</span> — Customer provides own router for Wi-Fi</td>
+                <td><span class="highlight">NO Wi-Fi</span> â Customer provides own router for Wi-Fi</td>
                 <td>Customer manages everything</td>
                 <td>Full control and customization</td>
               </tr>
             </tbody>
           </table>
 
-          <p style="margin-top: 16px; color: var(--att-orange); font-weight: 600;">⚠️ CRITICAL: Neither managed nor unmanaged routers provide Wi-Fi. Customers MUST provision their own Wi-Fi solution if they want wireless connectivity.</p>
+          <p style="margin-top: 16px; color: var(--att-orange); font-weight: 600;">â ï¸ CRITICAL: Neither managed nor unmanaged routers provide Wi-Fi. Customers MUST provision their own Wi-Fi solution if they want wireless connectivity.</p>
 
           <h3>Product-to-Service Line Mapping</h3>
           <p>When a customer mentions what they need, use this mapping to recommend the right product:</p>
@@ -863,7 +866,7 @@ body {
               <tr>
                 <td><strong>Fire Alarm</strong></td>
                 <td><span class="highlight">APBA (ONLY)</span></td>
-                <td>Fire alarm certification required — no alternatives</td>
+                <td>Fire alarm certification required â no alternatives</td>
               </tr>
               <tr>
                 <td><strong>Fax Machine</strong></td>
@@ -901,10 +904,10 @@ body {
           <h3>Copper-to-Fiber Transition Messaging</h3>
           <p>Key talking points when addressing copper service concerns:</p>
           <ul style="margin-left: 20px; margin-top: 12px;">
-            <li><strong>"Copper is being phased out"</strong> — AT&T is retiring the legacy copper network in favor of modern fiber infrastructure</li>
-            <li><strong>"Act now for promotional rates"</strong> — Current promotional pricing is available to customers transitioning during this window</li>
-            <li><strong>"Future-proof your business"</strong> — Fiber is the infrastructure of the future; copper will become increasingly unreliable and costly</li>
-            <li><strong>"Avoid service disruption"</strong> — Proactive transition now prevents forced migration later when copper lines are decommissioned</li>
+            <li><strong>"Copper is being phased out"</strong> â AT&T is retiring the legacy copper network in favor of modern fiber infrastructure</li>
+            <li><strong>"Act now for promotional rates"</strong> â Current promotional pricing is available to customers transitioning during this window</li>
+            <li><strong>"Future-proof your business"</strong> â Fiber is the infrastructure of the future; copper will become increasingly unreliable and costly</li>
+            <li><strong>"Avoid service disruption"</strong> â Proactive transition now prevents forced migration later when copper lines are decommissioned</li>
           </ul>
 
           <h3>O@H Licensing Model</h3>
@@ -921,7 +924,7 @@ body {
         </div>
 
         <div class="card">
-          <h2>📝 Day 1 Quiz</h2>
+          <h2>ð Day 1 Quiz</h2>
           <p>Test your knowledge of the AT&T Fiber product portfolio. Pass mark: <span class="highlight">80%</span> (16 out of 20 questions)</p>
           <button class="btn btn-primary" onclick="renderQuiz('day1-quiz')">Start Day 1 Quiz</button>
         </div>
@@ -955,7 +958,7 @@ body {
               <tr>
                 <td><strong>Use Their Name</strong></td>
                 <td>Creates rapport and cooperation</td>
-                <td>"Sarah, appreciate your help—can you connect me with John?"</td>
+                <td>"Sarah, appreciate your helpâcan you connect me with John?"</td>
               </tr>
               <tr>
                 <td><strong>Don't Sell to the Gatekeeper</strong></td>
@@ -980,7 +983,7 @@ body {
               </tr>
               <tr>
                 <td><strong>Pattern Interrupt</strong></td>
-                <td>"Quick question—can you point me in the right direction? I don't want to waste your time."</td>
+                <td>"Quick questionâcan you point me in the right direction? I don't want to waste your time."</td>
               </tr>
               <tr>
                 <td><strong>Higher-Authority Tone</strong></td>
@@ -1004,7 +1007,7 @@ body {
               </tr>
               <tr>
                 <td>"Email them instead"</td>
-                <td>"Sure. Before I send it, what's the best way to make sure it actually reaches them—short emails or direct calls?"</td>
+                <td>"Sure. Before I send it, what's the best way to make sure it actually reaches themâshort emails or direct calls?"</td>
               </tr>
               <tr>
                 <td>"They're busy"</td>
@@ -1072,17 +1075,17 @@ body {
 
           <h3>Mastering Active Listening</h3>
           <ul style="margin-left: 20px; margin-top: 12px;">
-            <li><strong>Pay attention to verbal and nonverbal cues</strong> — Listen for frustration, enthusiasm, hesitation</li>
-            <li><strong>Add value to the call</strong> — Provide insights, not just questions</li>
-            <li><strong>Be professional and empathetic</strong> — Show genuine interest in solving their problems</li>
-            <li><strong>Summarize to confirm understanding</strong> — "What I'm hearing is that you need better uptime. Is that correct?"</li>
-            <li><strong>Build trust through consistency</strong> — Follow through on what you say you'll do</li>
-            <li><strong>Document everything</strong> — Write down specifics for accuracy and future reference</li>
+            <li><strong>Pay attention to verbal and nonverbal cues</strong> â Listen for frustration, enthusiasm, hesitation</li>
+            <li><strong>Add value to the call</strong> â Provide insights, not just questions</li>
+            <li><strong>Be professional and empathetic</strong> â Show genuine interest in solving their problems</li>
+            <li><strong>Summarize to confirm understanding</strong> â "What I'm hearing is that you need better uptime. Is that correct?"</li>
+            <li><strong>Build trust through consistency</strong> â Follow through on what you say you'll do</li>
+            <li><strong>Document everything</strong> â Write down specifics for accuracy and future reference</li>
           </ul>
         </div>
 
         <div class="card">
-          <h2>📝 Day 2 Quiz</h2>
+          <h2>ð Day 2 Quiz</h2>
           <p>Test your gatekeeper and discovery mastery. Pass mark: <span class="highlight">80%</span> (12 out of 15 questions)</p>
           <button class="btn btn-primary" onclick="renderQuiz('day2-quiz')">Start Day 2 Quiz</button>
         </div>
@@ -1179,11 +1182,11 @@ body {
 
           <h3>Key Elements of a Strong Proposal</h3>
           <ul style="margin-left: 20px; margin-top: 12px;">
-            <li><strong>Customized to their needs</strong> — Address their specific challenges, not a generic pitch</li>
-            <li><strong>Cost-benefit analysis</strong> — Show the Monthly Recurring Cost (MRC) vs. value delivered</li>
-            <li><strong>Specific problem-solution connection</strong> — Make explicit how the solution solves their stated problems</li>
-            <li><strong>Scalability statement</strong> — Show how the solution grows with their business</li>
-            <li><strong>Timeline and next steps</strong> — Clear path to implementation</li>
+            <li><strong>Customized to their needs</strong> â Address their specific challenges, not a generic pitch</li>
+            <li><strong>Cost-benefit analysis</strong> â Show the Monthly Recurring Cost (MRC) vs. value delivered</li>
+            <li><strong>Specific problem-solution connection</strong> â Make explicit how the solution solves their stated problems</li>
+            <li><strong>Scalability statement</strong> â Show how the solution grows with their business</li>
+            <li><strong>Timeline and next steps</strong> â Clear path to implementation</li>
           </ul>
 
           <h3>Key Benefits & Talking Points</h3>
@@ -1197,7 +1200,7 @@ body {
             <tbody>
               <tr>
                 <td><strong>Reliability</strong></td>
-                <td>"Uptime guarantee — fiber doesn't degrade over distance like copper does. You get consistent performance."</td>
+                <td>"Uptime guarantee â fiber doesn't degrade over distance like copper does. You get consistent performance."</td>
               </tr>
               <tr>
                 <td><strong>Security</strong></td>
@@ -1205,7 +1208,7 @@ body {
               </tr>
               <tr>
                 <td><strong>Scalability</strong></td>
-                <td>"Adapts to your future growth — scales from 10 Mbps to 1 Tbps as your business expands."</td>
+                <td>"Adapts to your future growth â scales from 10 Mbps to 1 Tbps as your business expands."</td>
               </tr>
               <tr>
                 <td><strong>Speed</strong></td>
@@ -1223,22 +1226,22 @@ body {
             <li>"Eliminate downtime and boost productivity with our ultra-reliable Dedicated Fiber connection."</li>
             <li>"Future-proof your business with a scalable solution that grows from 10 Mbps to 1 Gbps and beyond."</li>
             <li>"Enhance security and compliance with robust network protection built into your infrastructure."</li>
-            <li>"Simplify your vendor relationships—one contract, one invoice, one team handling everything."</li>
+            <li>"Simplify your vendor relationshipsâone contract, one invoice, one team handling everything."</li>
           </ul>
 
           <h3>MRC (Monthly Recurring Cost) Positioning</h3>
           <ul style="margin-left: 20px; margin-top: 12px;">
-            <li><strong>Present pricing clearly and confidently</strong> — Don't apologize for the cost</li>
-            <li><strong>Frame as an investment</strong> — Show ROI through improved productivity, reduced downtime, better security</li>
-            <li><strong>Reference their pain points</strong> — "You mentioned downtime costs you about $2,000 per hour. This solution prevents that."</li>
-            <li><strong>Compare to alternatives</strong> — "For this level of reliability, competitive solutions cost 30% more."</li>
-            <li><strong>Highlight what's included</strong> — "This includes 24/7 monitoring, technical support, and equipment."</li>
+            <li><strong>Present pricing clearly and confidently</strong> â Don't apologize for the cost</li>
+            <li><strong>Frame as an investment</strong> â Show ROI through improved productivity, reduced downtime, better security</li>
+            <li><strong>Reference their pain points</strong> â "You mentioned downtime costs you about $2,000 per hour. This solution prevents that."</li>
+            <li><strong>Compare to alternatives</strong> â "For this level of reliability, competitive solutions cost 30% more."</li>
+            <li><strong>Highlight what's included</strong> â "This includes 24/7 monitoring, technical support, and equipment."</li>
           </ul>
         </div>
 
         <div class="card">
           <h2>SESSION 3: Call Flow Mastery</h2>
-          <p><strong>The complete call flow:</strong> Opener → Discovery → Value Presentation → Next Steps</p>
+          <p><strong>The complete call flow:</strong> Opener â Discovery â Value Presentation â Next Steps</p>
 
           <table>
             <thead>
@@ -1303,14 +1306,14 @@ body {
 
           <h3>Objection 1: "You are not AT&T. I only want to speak to them directly."</h3>
           <p><strong>Approved Response A:</strong> "You're right, we are not AT&T. I'm with the AT&T Alliance Channel, a certified Solution Provider offering you personalized support. Everything we do, we do directly with AT&T. We're an added layer of expertise to make your transition smooth."</p>
-          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "I completely understand. We're not AT&T, but we're a certified AT&T partner. Think of us like an AT&T specialist—we handle the details so AT&T's team focuses on bigger accounts. You get faster service and better support."</p>
+          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "I completely understand. We're not AT&T, but we're a certified AT&T partner. Think of us like an AT&T specialistâwe handle the details so AT&T's team focuses on bigger accounts. You get faster service and better support."</p>
 
           <h3>Objection 2: "I already have fiber."</h3>
           <p><strong>Approved Response A:</strong> "We reached out because your account still shows no active fiber service. With your authorization, we can verify if your account has been migrated and what services are actually live."</p>
           <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "That's great if you do. Let me verify that for you. I'm showing here that you still have an active account on the legacy copper network. Let's confirm what's actually active and make sure you're on the fastest service available."</p>
 
           <h3>Objection 3: "I'm not interested in switching."</h3>
-          <p><strong>Approved Response A:</strong> "I understand. Here's why I'm calling—AT&T is phasing out copper services. Copper is becoming obsolete and more costly to maintain, which may lead to further price increases. The transition to fiber now lets you lock in promotional rates."</p>
+          <p><strong>Approved Response A:</strong> "I understand. Here's why I'm callingâAT&T is phasing out copper services. Copper is becoming obsolete and more costly to maintain, which may lead to further price increases. The transition to fiber now lets you lock in promotional rates."</p>
           <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "I respect that. The reality is copper is no longer going to be working in the near future. By doing this transition now, you get a future-ready service while taking advantage of our promotional rates. Waiting means paying more later."</p>
 
           <h3>Objection 4: "If I lose internet/electricity, my phones will go down."</h3>
@@ -1318,7 +1321,7 @@ body {
           <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "That's exactly why we recommend APBA with 24HR battery backup and LTE failover. Your phones stay up. Plus, with Office@Hand, you can answer on every device, even your personal cell phone. No downtime."</p>
 
           <h3>Objection 5: "I already have an AT&T representative."</h3>
-          <p><strong>Approved Response A:</strong> "I'm glad you have an assigned rep. We're not trying to replace them—we want to provide extra support to you and your rep. Think of us as additional bandwidth for your account."</p>
+          <p><strong>Approved Response A:</strong> "I'm glad you have an assigned rep. We're not trying to replace themâwe want to provide extra support to you and your rep. Think of us as additional bandwidth for your account."</p>
           <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "That's excellent. My role is to handle the fiber transition specifically. After we get you set up and trained, you can continue working with your rep on everything else. We're here to make the transition seamless."</p>
 
           <h3>Objection 6: "I'm planning to switch providers."</h3>
@@ -1335,7 +1338,7 @@ body {
 
           <h3>Objection 9: "Don't need/want fiber."</h3>
           <p><strong>Approved Response A:</strong> "I hear you. The reality is copper is being retired. Even if you're happy now, copper's going away, so planning your transition now prevents service disruption."</p>
-          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "Fiber is completely compatible with your current infrastructure. You won't see changes in how you operate—just better speed, reliability, and security. The infrastructure underneath just gets better."</p>
+          <p style="margin-top: 12px;"><strong>Approved Response B:</strong> "Fiber is completely compatible with your current infrastructure. You won't see changes in how you operateâjust better speed, reliability, and security. The infrastructure underneath just gets better."</p>
 
           <h3>Objection 10: "Is this mandatory?"</h3>
           <p><strong>Approved Response A:</strong> "Not yet, but copper is being retired. The smart move is transitioning now while you have promotional pricing and avoid forced migration later."</p>
@@ -1347,7 +1350,7 @@ body {
           <p><strong>LOA is a standard AT&T requirement for any service change.</strong> Here's how to position it:</p>
           <ul style="margin-left: 20px; margin-top: 12px;">
             <li><strong>Standard requirement:</strong> "The LOA is just AT&T's standard authorization form. We need it to verify you're authorized to make this change."</li>
-            <li><strong>Simple process:</strong> "You'll just sign a form confirming the change. It's quick—takes about 2 minutes."</li>
+            <li><strong>Simple process:</strong> "You'll just sign a form confirming the change. It's quickâtakes about 2 minutes."</li>
             <li><strong>CPNI rules:</strong> "The only thing you need to know is that CPNI (Customer Proprietary Network Information) rules mean we can only change the company name on the account. We can't add unrelated services."</li>
             <li><strong>What changes:</strong> "Basically, the LOA authorizes us to move your services from copper to fiber and update your account with any new services you're ordering."</li>
           </ul>
@@ -1357,7 +1360,7 @@ body {
           <h2>SESSION 3: Closing Techniques</h2>
 
           <h3>The Summary Close</h3>
-          <p>"Let me make sure I have this right. You need better uptime for your POS systems. APBA gives you that with battery backup and LTE failover. You're ready to move forward—correct?"</p>
+          <p>"Let me make sure I have this right. You need better uptime for your POS systems. APBA gives you that with battery backup and LTE failover. You're ready to move forwardâcorrect?"</p>
 
           <h3>The Trial Close</h3>
           <p>"If we could have this installed by next month with no downtime to your operations, would that work for you?"</p>
@@ -1370,15 +1373,15 @@ body {
 
           <h3>Key Closing Principles</h3>
           <ul style="margin-left: 20px; margin-top: 12px;">
-            <li><strong>Ask for the deal directly</strong> — Don't hint; ask clearly if they're ready to move forward</li>
-            <li><strong>Assume the positive</strong> — Use assumptive language that presumes they've decided "yes"</li>
-            <li><strong>Address remaining concerns</strong> — If they hesitate, ask "What would make you comfortable moving forward?"</li>
-            <li><strong>Provide a clear next step</strong> — "Here's what happens next: I'll send you the proposal by end of day. You review it overnight. We confirm numbers tomorrow morning. Deal?"</li>
+            <li><strong>Ask for the deal directly</strong> â Don't hint; ask clearly if they're ready to move forward</li>
+            <li><strong>Assume the positive</strong> â Use assumptive language that presumes they've decided "yes"</li>
+            <li><strong>Address remaining concerns</strong> â If they hesitate, ask "What would make you comfortable moving forward?"</li>
+            <li><strong>Provide a clear next step</strong> â "Here's what happens next: I'll send you the proposal by end of day. You review it overnight. We confirm numbers tomorrow morning. Deal?"</li>
           </ul>
         </div>
 
         <div class="card">
-          <h2>📝 Day 4 Quiz</h2>
+          <h2>ð Day 4 Quiz</h2>
           <p>Test your objection handling and closing mastery. Pass mark: <span class="highlight">85%</span> (17 out of 20 questions)</p>
           <button class="btn btn-primary" onclick="renderQuiz('day4-quiz')">Start Day 4 Quiz</button>
         </div>
@@ -1520,16 +1523,16 @@ body {
       <!-- CLOSER TRAINING SUPPLEMENT PAGE -->
       <div id="closer" class="page">
         <h1 class="page-title">Closer Training Supplement</h1>
-        <p class="page-subtitle">Practical knowledge from live training sessions — essential for closers</p>
+        <p class="page-subtitle">Practical knowledge from live training sessions â essential for closers</p>
 
         <div class="card">
-          <h2>SECTION 1: ADI — Managed vs Unmanaged Routers (Critical Knowledge)</h2>
+          <h2>SECTION 1: ADI â Managed vs Unmanaged Routers (Critical Knowledge)</h2>
 
           <h3>Managed Router (AT&T Provided)</h3>
-          <p>AT&T monitors and manages the router. If something fails, AT&T detects and resolves it. <strong>HOWEVER — managed routers do NOT provide Wi-Fi access.</strong> If the customer needs Wi-Fi, they must provide their own additional router.</p>
+          <p>AT&T monitors and manages the router. If something fails, AT&T detects and resolves it. <strong>HOWEVER â managed routers do NOT provide Wi-Fi access.</strong> If the customer needs Wi-Fi, they must provide their own additional router.</p>
 
           <h3>Unmanaged Router (Customer Provided)</h3>
-          <p>Customer provides and manages their own router. They get Wi-Fi. But if something goes wrong with the router, it's the customer's responsibility to fix — AT&T only monitors the line, not the router.</p>
+          <p>Customer provides and manages their own router. They get Wi-Fi. But if something goes wrong with the router, it's the customer's responsibility to fix â AT&T only monitors the line, not the router.</p>
 
           <h3>Key Question to Ask</h3>
           <p style="font-style: italic; margin-top: 8px;">"Will you need Wi-Fi access? If so, the unmanaged option lets you use your own router with Wi-Fi, or with managed, you'll need a separate Wi-Fi router."</p>
@@ -1545,8 +1548,8 @@ body {
         </div>
 
         <div class="card">
-          <h2>SECTION 2: APBA — The Fire Alarm Rule (Non-Negotiable)</h2>
-          <p style="font-size: 1.1em; font-weight: bold; color: #e74c3c;">If a customer says FIRE ALARM → APBA is the ONLY solution. No exceptions.</p>
+          <h2>SECTION 2: APBA â The Fire Alarm Rule (Non-Negotiable)</h2>
+          <p style="font-size: 1.1em; font-weight: bold; color: #e74c3c;">If a customer says FIRE ALARM â APBA is the ONLY solution. No exceptions.</p>
 
           <h3>Product-to-Service Line Mapping</h3>
           <table>
@@ -1566,20 +1569,20 @@ body {
 
           <h3>APBA Key Facts</h3>
           <ul style="margin-left: 20px; margin-top: 12px;">
-            <li><strong>APBA as a Service (AES):</strong> monthly recurring charge only — no upfront equipment cost</li>
-            <li><strong>24-hour battery backup</strong> built in (critical for fire alarms — keeps working during power outage)</li>
+            <li><strong>APBA as a Service (AES):</strong> monthly recurring charge only â no upfront equipment cost</li>
+            <li><strong>24-hour battery backup</strong> built in (critical for fire alarms â keeps working during power outage)</li>
             <li>Can connect <strong>up to 6 lines</strong> per device</li>
             <li><strong>Site survey needed for 5+ lines ($350)</strong></li>
             <li>No installation costs</li>
-            <li>Can use LTE or wired internet connection — wired preferred for reliability</li>
+            <li>Can use LTE or wired internet connection â wired preferred for reliability</li>
             <li><strong>VAB-1 device</strong> with 24-hour battery backup, offered exclusively by AT&T</li>
             <li>If customer has more than voice + fire alarm, <strong>loop in Sahil</strong> to determine best solution</li>
           </ul>
         </div>
 
         <div class="card">
-          <h2>SECTION 3: Office@Hand — Licensing & Technical Requirements</h2>
-          <p>Cloud-based phone service — works from any device (desk phone, tablet, mobile, PC)</p>
+          <h2>SECTION 3: Office@Hand â Licensing & Technical Requirements</h2>
+          <p>Cloud-based phone service â works from any device (desk phone, tablet, mobile, PC)</p>
 
           <h3>Pricing</h3>
           <p><strong>Per LICENSE, not per user.</strong> One license = one phone number that can ring on multiple devices.</p>
@@ -1604,7 +1607,7 @@ body {
 
           <h3>First Call Priorities</h3>
           <ol style="margin-left: 20px; margin-top: 12px;">
-            <li>Identify the right contact (not just decision-maker — need person who knows what lines are used for, e.g., building department, office manager)</li>
+            <li>Identify the right contact (not just decision-maker â need person who knows what lines are used for, e.g., building department, office manager)</li>
             <li>Additional discovery beyond what appointment setter gathered</li>
             <li>Document every line and what it's used for</li>
             <li>Determine if customer has special services (alarms, elevators, fax, POS)</li>
@@ -1624,15 +1627,15 @@ body {
         <div class="card">
           <h2>SECTION 5: Line Discovery & Documentation (Critical for Closers)</h2>
           <p style="font-weight: bold; color: #e74c3c;">You MUST know what EVERY line is used for before proposing a solution.</p>
-          <p style="margin-top: 8px;">AT&T does not track what customers use their lines for — only the customer knows.</p>
+          <p style="margin-top: 8px;">AT&T does not track what customers use their lines for â only the customer knows.</p>
           <p style="margin-top: 8px;"><strong>Ask:</strong> <em>"Can you walk me through each of your phone lines and what they're being used for?"</em></p>
 
           <h3>Document in CRM Notes Using This Format</h3>
           <div style="background: rgba(0,200,255,0.08); padding: 16px; border-radius: 8px; margin-top: 8px; font-family: monospace; font-size: 0.9em;">
-            Line 1: (555) 123-4567 — Voice<br>
-            Line 2: (555) 123-4568 — Fax<br>
-            Line 3: (555) 123-4569 — Fire Alarm<br>
-            Line 4: (555) 123-4570 — POS Terminal
+            Line 1: (555) 123-4567 â Voice<br>
+            Line 2: (555) 123-4568 â Fax<br>
+            Line 3: (555) 123-4569 â Fire Alarm<br>
+            Line 4: (555) 123-4570 â POS Terminal
           </div>
           <p style="margin-top: 12px;">If customer has 10+ lines, at minimum <strong>GROUP them:</strong> "3 voice lines, 2 fax lines, 1 fire alarm, 4 POS"</p>
           <p style="margin-top: 8px;">This documentation is <strong>ESSENTIAL</strong> for your order summary and solution proposal.</p>
@@ -1645,10 +1648,10 @@ body {
           <h3>How to Send LOA</h3>
           <ul style="margin-left: 20px; margin-top: 12px;">
             <li>Templates are pre-loaded in <strong>Zoho CRM</strong> under email templates (public templates)</li>
-            <li>Hit "Send Email" on the lead → "Insert Template" → Select LOA template</li>
+            <li>Hit "Send Email" on the lead â "Insert Template" â Select LOA template</li>
           </ul>
 
-          <p style="margin-top: 12px; font-weight: bold; color: #e74c3c;">CRITICAL: Only change the COMPANY NAME on the template. Do NOT change any other wording, even if grammar seems incorrect — this is the AT&T-approved format.</p>
+          <p style="margin-top: 12px; font-weight: bold; color: #e74c3c;">CRITICAL: Only change the COMPANY NAME on the template. Do NOT change any other wording, even if grammar seems incorrect â this is the AT&T-approved format.</p>
 
           <h3>CPNI Rule</h3>
           <p>If CPNI was NOT read to the customer, <strong>REMOVE the section that shows account number and MRC</strong> before sending. This protects sensitive account information.</p>
@@ -1671,11 +1674,11 @@ body {
           </table>
 
           <h3>CRM Pipeline Stages</h3>
-          <p style="margin-top: 8px;"><strong>Discovery → Solution Proposed → LOA Signed → Contract Sent → Signed → Installation Scheduled</strong></p>
+          <p style="margin-top: 8px;"><strong>Discovery â Solution Proposed â LOA Signed â Contract Sent â Signed â Installation Scheduled</strong></p>
         </div>
 
         <div class="card" style="border-left: 4px solid #00c8ff;">
-          <h2>📝 Closer Training Quiz</h2>
+          <h2>ð Closer Training Quiz</h2>
           <p>Test your knowledge of closer-specific processes and product details. Pass mark: <span style="color: #00c8ff; font-weight: bold;">80%</span> (12 out of 15 questions)</p>
           <button class="btn btn-primary" onclick="renderQuiz('closer-quiz')" style="margin-top: 12px;">Start Closer Training Quiz</button>
         </div>
@@ -1822,11 +1825,11 @@ body {
               </tr>
               <tr>
                 <td>"Phones go down if internet fails"</td>
-                <td>"That's why we recommend APBA with 24hr battery backup and LTE failover—your phones stay up."</td>
+                <td>"That's why we recommend APBA with 24hr battery backup and LTE failoverâyour phones stay up."</td>
               </tr>
               <tr>
                 <td>"Already have an AT&T rep"</td>
-                <td>"Great! We're not replacing them—we're handling your fiber transition so they focus on other priorities."</td>
+                <td>"Great! We're not replacing themâwe're handling your fiber transition so they focus on other priorities."</td>
               </tr>
             </tbody>
           </table>
@@ -1837,7 +1840,7 @@ body {
           <ul style="margin-left: 20px;">
             <li><strong>Summary Close:</strong> "So you need uptime guarantee. APBA gives you that. Ready to move forward?"</li>
             <li><strong>Trial Close:</strong> "If we could install this by next month with zero downtime, would that work?"</li>
-            <li><strong>Alternative Choice:</strong> "Which appeals to you more—the 100 Mbps or 250 Mbps option?"</li>
+            <li><strong>Alternative Choice:</strong> "Which appeals to you moreâthe 100 Mbps or 250 Mbps option?"</li>
             <li><strong>Urgency Close:</strong> "This rate locks in only through [date]. Move forward this week?"</li>
           </ul>
         </div>
@@ -1856,25 +1859,25 @@ body {
 
         <div class="card">
           <h2>SPIN Selling Quick Framework</h2>
-          <p><strong>Situation →</strong> "Tell me about your current setup."</p>
-          <p><strong>Problem →</strong> "What challenges are you facing?"</p>
-          <p><strong>Implication →</strong> "How does that impact your business?"</p>
-          <p><strong>Need-Payoff →</strong> "Would a solution that fixes this help you?"</p>
+          <p><strong>Situation â</strong> "Tell me about your current setup."</p>
+          <p><strong>Problem â</strong> "What challenges are you facing?"</p>
+          <p><strong>Implication â</strong> "How does that impact your business?"</p>
+          <p><strong>Need-Payoff â</strong> "Would a solution that fixes this help you?"</p>
         </div>
       </div>
 
       <!-- TRAINER ANSWER KEY PAGE -->
       <div id="trainer-key" class="page">
         <h1 class="page-title">Trainer Answer Key</h1>
-        <p class="page-subtitle">CONFIDENTIAL — Do not distribute to agents before or after training</p>
+        <p class="page-subtitle">CONFIDENTIAL â Do not distribute to agents before or after training</p>
 
         <div class="card" style="border-left: 4px solid var(--att-orange);">
-          <p style="color: var(--att-orange); font-weight: 600;">⚠️ TRAINER USE ONLY</p>
+          <p style="color: var(--att-orange); font-weight: 600;">â ï¸ TRAINER USE ONLY</p>
           <p>This answer key is confidential. Use it only for grading quizzes and evaluating agent knowledge. Do not share with agents before they take quizzes.</p>
         </div>
 
         <div class="card">
-          <h2>Day 1: Product Knowledge Quiz — Answer Key</h2>
+          <h2>Day 1: Product Knowledge Quiz â Answer Key</h2>
           <table>
             <thead>
               <tr>
@@ -1887,8 +1890,8 @@ body {
               <tr><td>2</td><td>B) 10 Mbps</td></tr>
               <tr><td>3</td><td>B) Managed routers do NOT provide Wi-Fi</td></tr>
               <tr><td>4</td><td>C) Ethernet/private line with managed router option</td></tr>
-              <tr><td>5</td><td>B) O@H — unlimited US calling, HD video</td></tr>
-              <tr><td>6</td><td>C) ADI — dedicated internet, 10 Mbps-1 Tbps</td></tr>
+              <tr><td>5</td><td>B) O@H â unlimited US calling, HD video</td></tr>
+              <tr><td>6</td><td>C) ADI â dedicated internet, 10 Mbps-1 Tbps</td></tr>
               <tr><td>7</td><td>A) Copper is being phased out; fiber is the future</td></tr>
               <tr><td>8</td><td>B) Per-user licensing</td></tr>
               <tr><td>9</td><td>C) 24hr battery backup and LTE failover</td></tr>
@@ -1900,7 +1903,7 @@ body {
               <tr><td>15</td><td>A) Avoid service disruption; fiber is more reliable</td></tr>
               <tr><td>16</td><td>C) One license = one number on multiple devices</td></tr>
               <tr><td>17</td><td>B) APBA VAB-1</td></tr>
-              <tr><td>18</td><td>A) Never—managed and unmanaged both lack Wi-Fi</td></tr>
+              <tr><td>18</td><td>A) Neverâmanaged and unmanaged both lack Wi-Fi</td></tr>
               <tr><td>19</td><td>C) ADI at 1 Tbps (maximum on the platform)</td></tr>
               <tr><td>20</td><td>B) All of the above meet different customer needs</td></tr>
             </tbody>
@@ -1908,7 +1911,7 @@ body {
         </div>
 
         <div class="card">
-          <h2>Day 2: Discovery & Gatekeeper Quiz — Answer Key</h2>
+          <h2>Day 2: Discovery & Gatekeeper Quiz â Answer Key</h2>
           <table>
             <thead>
               <tr>
@@ -1917,11 +1920,11 @@ body {
               </tr>
             </thead>
             <tbody>
-              <tr><td>1</td><td>A) Assumptive tone—speak as if the call is expected</td></tr>
+              <tr><td>1</td><td>A) Assumptive toneâspeak as if the call is expected</td></tr>
               <tr><td>2</td><td>C) "It's regarding a project with their department"</td></tr>
               <tr><td>3</td><td>B) Ask for their name and use it to build rapport</td></tr>
               <tr><td>4</td><td>A) "I'm hoping you can help me get to..."</td></tr>
-              <tr><td>5</td><td>B) Pattern interrupt—acknowledge you don't want to waste their time</td></tr>
+              <tr><td>5</td><td>B) Pattern interruptâacknowledge you don't want to waste their time</td></tr>
               <tr><td>6</td><td>C) Understand current infrastructure and pain points</td></tr>
               <tr><td>7</td><td>A) "What are your biggest challenges related to network performance?"</td></tr>
               <tr><td>8</td><td>B) "What are your service requirements now and in 1-3 years?"</td></tr>
@@ -1937,7 +1940,7 @@ body {
         </div>
 
         <div class="card">
-          <h2>Day 4: Objection Handling Quiz — Answer Key</h2>
+          <h2>Day 4: Objection Handling Quiz â Answer Key</h2>
           <table>
             <thead>
               <tr>
@@ -1947,19 +1950,19 @@ body {
             </thead>
             <tbody>
               <tr><td>1</td><td>B) "We're AT&T Alliance Partners offering personalized support"</td></tr>
-              <tr><td>2</td><td>A) "Your account still shows copper active—let me verify"</td></tr>
-              <tr><td>3</td><td>B) "Copper is being phased out—transition now for promotional rates"</td></tr>
+              <tr><td>2</td><td>A) "Your account still shows copper activeâlet me verify"</td></tr>
+              <tr><td>3</td><td>B) "Copper is being phased outâtransition now for promotional rates"</td></tr>
               <tr><td>4</td><td>B) APBA with 24hr battery and LTE failover + O@H multi-device</td></tr>
-              <tr><td>5</td><td>A) "We're not replacing your rep—we're providing extra support"</td></tr>
+              <tr><td>5</td><td>A) "We're not replacing your repâwe're providing extra support"</td></tr>
               <tr><td>6</td><td>A) Ask what provider they're considering and why</td></tr>
               <tr><td>7</td><td>B) "Ask for the reference number and compare offerings"</td></tr>
-              <tr><td>8</td><td>A) "Our records show AT&T service at your location—let me verify"</td></tr>
-              <tr><td>9</td><td>A) "Copper is being retired—planning now prevents disruption"</td></tr>
-              <tr><td>10</td><td>A) "Not yet, but copper is being phased out—act now"</td></tr>
+              <tr><td>8</td><td>A) "Our records show AT&T service at your locationâlet me verify"</td></tr>
+              <tr><td>9</td><td>A) "Copper is being retiredâplanning now prevents disruption"</td></tr>
+              <tr><td>10</td><td>A) "Not yet, but copper is being phased outâact now"</td></tr>
               <tr><td>11</td><td>B) Standard AT&T requirement; explain CPNI rules apply</td></tr>
-              <tr><td>12</td><td>C) Summary Close—recap needs and ask for confirmation</td></tr>
-              <tr><td>13</td><td>B) Trial Close—propose timeline and ask if it works</td></tr>
-              <tr><td>14</td><td>C) Alternative Choice Close—offer two product options</td></tr>
+              <tr><td>12</td><td>C) Summary Closeârecap needs and ask for confirmation</td></tr>
+              <tr><td>13</td><td>B) Trial Closeâpropose timeline and ask if it works</td></tr>
+              <tr><td>14</td><td>C) Alternative Choice Closeâoffer two product options</td></tr>
               <tr><td>15</td><td>A) Ask what would make them comfortable moving forward</td></tr>
               <tr><td>16</td><td>B) Present MRC confidently and frame as investment in reliability</td></tr>
               <tr><td>17</td><td>C) Reference their stated pain points ("This prevents the downtime...")</td></tr>
@@ -1976,8 +1979,8 @@ body {
         </div>
 
         <div class="card">
-          <h2>Closer Training Supplement Quiz — Answer Key</h2>
-          <p style="color: var(--att-accent); font-weight: 600; margin-bottom: 12px;">15 Questions — Pass Mark: 80% (12/15)</p>
+          <h2>Closer Training Supplement Quiz â Answer Key</h2>
+          <p style="color: var(--att-accent); font-weight: 600; margin-bottom: 12px;">15 Questions â Pass Mark: 80% (12/15)</p>
           <table>
             <thead>
               <tr>
@@ -1993,13 +1996,13 @@ body {
               <tr><td>4</td><td>B) APBA (only product with fire alarm certification)</td><td>APBA is the ONLY product with fire alarm certification. Non-negotiable.</td></tr>
               <tr><td>5</td><td>C) Fire alarm, POS, and elevator lines</td><td>APBA is used for specialty services. Do NOT use APBA for voice.</td></tr>
               <tr><td>6</td><td>B) Up to 6 lines (site survey needed for 5+)</td><td>APBA can connect up to 6 lines per device. Site survey ($350) needed for 5+.</td></tr>
-              <tr><td>7</td><td>B) Per license — one phone number on multiple devices</td><td>Office@Hand is priced per license, not per user.</td></tr>
+              <tr><td>7</td><td>B) Per license â one phone number on multiple devices</td><td>Office@Hand is priced per license, not per user.</td></tr>
               <tr><td>8</td><td>B) Buy from any retailer, must be on AT&T CPE list</td><td>VoIP phones can be purchased anywhere but must be compatible.</td></tr>
               <tr><td>9</td><td>B) Prioritizes voice traffic over other internet traffic</td><td>QoS ensures call quality over other internet usage.</td></tr>
               <tr><td>10</td><td>B) Reference the appointment setter by name</td><td>Maintains conversation continuity and builds credibility.</td></tr>
               <tr><td>11</td><td>B) Document every line and its purpose</td><td>Essential before proposing any solution.</td></tr>
               <tr><td>12</td><td>B) Rate increases as urgency driver</td><td>"Your rates are subject to increase by year-end. Lock in promotional rates now."</td></tr>
-              <tr><td>13</td><td>B) Only change the company name</td><td>Do NOT change any other wording — it's the AT&T-approved format.</td></tr>
+              <tr><td>13</td><td>B) Only change the company name</td><td>Do NOT change any other wording â it's the AT&T-approved format.</td></tr>
               <tr><td>14</td><td>B) If CPNI was NOT read to the customer</td><td>Remove account number and MRC to protect sensitive data.</td></tr>
               <tr><td>15</td><td>B) Go to HOME TAB in Zoho</td><td>Start from your HOME TAB to see all prioritized tasks, calls, and meetings.</td></tr>
             </tbody>
@@ -2079,9 +2082,9 @@ const quizData = {
       { text: 'When a customer says they\'re worried about downtime, position which benefit?', options: ['Cost savings', 'Avoid service disruption; fiber more reliable', 'Faster speeds', 'Unlimited data'], answer: 1 },
       { text: 'One O@H license equals what?', options: ['One physical phone', 'One phone number ringing on multiple devices', 'One device per company', 'One call at a time'], answer: 1 },
       { text: 'APBA VAB-1 is best for customers with what legacy systems?', options: ['Modern IP systems', 'Cellular backup only', 'Analog POTS, fax, fire alarms, elevators', 'Video conferencing'], answer: 2 },
-      { text: 'When should a managed router provide Wi-Fi?', options: ['Always', 'With additional charge', 'Never—customer must supply their own', 'Only if they pay extra'], answer: 2 },
+      { text: 'When should a managed router provide Wi-Fi?', options: ['Always', 'With additional charge', 'Neverâcustomer must supply their own', 'Only if they pay extra'], answer: 2 },
       { text: 'What is the maximum ADI speed available?', options: ['100 Mbps', '1 Gbps', '1 Tbps', '100 Gbps'], answer: 2 },
-      { text: 'Which products best serve all customer types?', options: ['Just ADI', 'Just O@H', 'All of them—each serves different needs', 'Only ABF and APBA'], answer: 2 }
+      { text: 'Which products best serve all customer types?', options: ['Just ADI', 'Just O@H', 'All of themâeach serves different needs', 'Only ABF and APBA'], answer: 2 }
     ]
   },
 
@@ -2111,20 +2114,20 @@ const quizData = {
     title: 'Day 4: Objection Handling Quiz',
     passMark: 85,
     questions: [
-      { text: '"You are not AT&T. I only want to speak to them." — Best approved response:', options: ['"We are too an authorized partner"', '"We\'re certified AT&T Alliance Partners offering personalized support"', '"AT&T doesn\'t have time for small customers"', '"Let me connect you to AT&T directly"'], answer: 1 },
-      { text: '"I already have fiber." — Best approved response:', options: ['"That\'s impossible"', '"Your account still shows copper active—let me verify"', '"Then you don\'t need us"', '"Fiber from where?"'], answer: 1 },
-      { text: '"I\'m not interested in switching." — Best approved response:', options: ['"You should be"', '"Copper is being phased out—transition now for promotional rates"', '"Too bad"', '"Why not?"'], answer: 1 },
-      { text: '"If I lose internet, my phones go down." — Best approved response:', options: ['"That\'s life"', '"APBA with 24hr battery and LTE failover keeps phones up; O@H works on any device"', '"Not much we can do"', '"Buy a backup generator"'], answer: 1 },
-      { text: '"I already have an AT&T rep." — Best approved response:', options: ['"Fire them and use us"', '"We\'re providing extra support—not replacing your rep"', '"Then you don\'t need us"', '"That rep is underperforming"'], answer: 1 },
-      { text: '"I\'m planning to switch providers." — Your action:', options: ['Give up', 'Ask what provider and why; compare offerings', 'Tell them AT&T is better', 'Argue with them'], answer: 1 },
-      { text: '"I\'m already in the process of switching." — Your action:', options: ['End the call', 'Ask which service they\'re switching to and reference the number', 'Do nothing', 'Tell them to cancel'], answer: 1 },
-      { text: '"I don\'t have AT&T copper service." — Best response:', options: ['"Then we can\'t help"', '"Records show AT&T service at your location—let me verify"', '"Wrong number"', '"You must"'], answer: 1 },
-      { text: '"I don\'t want/need fiber." — Best response:', options: ['"You\'re wrong"', '"Copper is being retired—planning now prevents service disruption"', '"Fiber is mandatory"', '"That\'s old-fashioned thinking"'], answer: 1 },
-      { text: '"Is this mandatory?" — Best response:', options: ['"Yes, everyone must switch"', '"Not yet, but copper is being phased out—act now"', '"No" and take no action', '"It depends on your area"'], answer: 1 },
+      { text: '"You are not AT&T. I only want to speak to them." â Best approved response:', options: ['"We are too an authorized partner"', '"We\'re certified AT&T Alliance Partners offering personalized support"', '"AT&T doesn\'t have time for small customers"', '"Let me connect you to AT&T directly"'], answer: 1 },
+      { text: '"I already have fiber." â Best approved response:', options: ['"That\'s impossible"', '"Your account still shows copper activeâlet me verify"', '"Then you don\'t need us"', '"Fiber from where?"'], answer: 1 },
+      { text: '"I\'m not interested in switching." â Best approved response:', options: ['"You should be"', '"Copper is being phased outâtransition now for promotional rates"', '"Too bad"', '"Why not?"'], answer: 1 },
+      { text: '"If I lose internet, my phones go down." â Best approved response:', options: ['"That\'s life"', '"APBA with 24hr battery and LTE failover keeps phones up; O@H works on any device"', '"Not much we can do"', '"Buy a backup generator"'], answer: 1 },
+      { text: '"I already have an AT&T rep." â Best approved response:', options: ['"Fire them and use us"', '"We\'re providing extra supportânot replacing your rep"', '"Then you don\'t need us"', '"That rep is underperforming"'], answer: 1 },
+      { text: '"I\'m planning to switch providers." â Your action:', options: ['Give up', 'Ask what provider and why; compare offerings', 'Tell them AT&T is better', 'Argue with them'], answer: 1 },
+      { text: '"I\'m already in the process of switching." â Your action:', options: ['End the call', 'Ask which service they\'re switching to and reference the number', 'Do nothing', 'Tell them to cancel'], answer: 1 },
+      { text: '"I don\'t have AT&T copper service." â Best response:', options: ['"Then we can\'t help"', '"Records show AT&T service at your locationâlet me verify"', '"Wrong number"', '"You must"'], answer: 1 },
+      { text: '"I don\'t want/need fiber." â Best response:', options: ['"You\'re wrong"', '"Copper is being retiredâplanning now prevents service disruption"', '"Fiber is mandatory"', '"That\'s old-fashioned thinking"'], answer: 1 },
+      { text: '"Is this mandatory?" â Best response:', options: ['"Yes, everyone must switch"', '"Not yet, but copper is being phased outâact now"', '"No" and take no action', '"It depends on your area"'], answer: 1 },
       { text: 'LOA (Letter of Authorization) is a(n):', options: ['Optional request', 'Standard AT&T requirement to authorize service changes', 'Marketing material', 'Billing document'], answer: 1 },
-      { text: 'The Summary Close would be:', options: ['"Buy now"', '"Let me recap: you need uptime, APBA provides it—ready?"', '"I think you should switch"', '"Maybe call us later"'], answer: 1 },
+      { text: 'The Summary Close would be:', options: ['"Buy now"', '"Let me recap: you need uptime, APBA provides itâready?"', '"I think you should switch"', '"Maybe call us later"'], answer: 1 },
       { text: 'The Trial Close would be:', options: ['"Our service is free to try"', '"If we install by next month with zero downtime, would that work?"', '"Trial period is 30 days"', '"Try calling us next year"'], answer: 1 },
-      { text: 'The Alternative Choice Close would be:', options: ['"Choose a competitor"', '"100 Mbps or 250 Mbps—which appeals to you?"', '"I don\'t care which you pick"', '"No choices available"'], answer: 1 },
+      { text: 'The Alternative Choice Close would be:', options: ['"Choose a competitor"', '"100 Mbps or 250 Mbpsâwhich appeals to you?"', '"I don\'t care which you pick"', '"No choices available"'], answer: 1 },
       { text: 'When a prospect hesitates after your close, you should:', options: ['Hang up', 'Ask "What would make you comfortable moving forward?"', 'Give them an ultimatum', 'Leave them alone'], answer: 1 },
       { text: 'How should you present MRC (Monthly Recurring Cost)?', options: ['Apologetically', 'Confidently, framed as investment in reliability and value', 'As an afterthought', 'Never mention cost'], answer: 1 },
       { text: 'When positioning value against price, reference:', options: ['Competitor pricing', 'Their stated pain points ("This prevents the downtime you mentioned")', 'Industry averages', 'Your own opinions'], answer: 1 },
@@ -2162,18 +2165,18 @@ const quizData = {
       { text: 'A strong proposal includes:', options: ['Generic benefits', 'Customized solution connected to their needs with ROI', 'Lowest price possible', 'Many technical details'], answer: 1 },
       { text: 'MRC should be positioned as:', options: ['Expense to apologize for', 'Investment in reliability, security, and growth', 'Temporary cost', 'Negotiable downward'], answer: 1 },
       { text: 'The call flow opener should:', options: ['Launch into features', 'Build rapport, establish credibility, state purpose', 'Ask for the sale', 'Demand a decision'], answer: 1 },
-      { text: 'A multi-call closer sales structure includes:', options: ['Single call close', 'Appointment setter → Closer call #1 → Closer call #2 (if needed)', 'No follow-up calls', 'Endless meetings'], answer: 1 },
+      { text: 'A multi-call closer sales structure includes:', options: ['Single call close', 'Appointment setter â Closer call #1 â Closer call #2 (if needed)', 'No follow-up calls', 'Endless meetings'], answer: 1 },
       { text: 'When opening a closer call:', options: ['"Hi, let\'s buy"', '"Hi [Name], this is [You]. Sarah discussed [topic]. I want to dive deeper. Do you have 15 min?"', '"You ready to sign?"', '"Let me pitch"'], answer: 1 },
       { text: 'Objection "You are not AT&T" response:', options: ['"We are too"', '"We\'re certified AT&T Alliance Partners offering personalized support"', '"Leave me alone"', '"Call AT&T directly"'], answer: 1 },
-      { text: 'Objection "Already have fiber" response:', options: ['"No you don\'t"', '"Your account shows copper active—let me verify"', '"Too bad"', '"Upgrade anyway"'], answer: 1 },
-      { text: 'Objection "Not interested" response:', options: ['"Too bad"', '"Copper is being phased out—transition now for rates"', '"Okay, have a good day"', '"I understand, but you should reconsider"'], answer: 1 },
+      { text: 'Objection "Already have fiber" response:', options: ['"No you don\'t"', '"Your account shows copper activeâlet me verify"', '"Too bad"', '"Upgrade anyway"'], answer: 1 },
+      { text: 'Objection "Not interested" response:', options: ['"Too bad"', '"Copper is being phased outâtransition now for rates"', '"Okay, have a good day"', '"I understand, but you should reconsider"'], answer: 1 },
       { text: 'Objection "Phones go down if internet fails" response:', options: ['"Move to cellular"', '"APBA with 24hr battery + LTE failover; O@H on multiple devices"', '"Can\'t fix that"', '"Not a real issue"'], answer: 1 },
       { text: 'Objection "Already have AT&T rep" response:', options: ['"Replace them"', '"We\'re providing extra support, not replacing them"', '"We\'re done then"', '"Fire them"'], answer: 1 },
       { text: 'When customer says "Planning to switch": you should:', options: ['Give up', 'Ask why and compare offerings', 'Be silent', 'Argue'], answer: 1 },
       { text: 'When customer says "Already switching": you should:', options: ['Accept it', 'Ask service/reference number and compare', 'Hang up', 'Yell at them'], answer: 1 },
       { text: 'LOA is:', options: ['Optional marketing', 'Standard AT&T requirement to authorize changes', 'A contract', 'Billing form'], answer: 1 },
       { text: 'CPNI rules mean LOA can:', options: ['Change anything on account', 'Only change company name; no unrelated services', 'Add anything', 'Nothing specific'], answer: 1 },
-      { text: 'The Summary Close phrase:', options: ['"Buy now"', '"Let me recap: [needs], [solution]—ready?"', '"Maybe later"', '"Let me think about it"'], answer: 1 },
+      { text: 'The Summary Close phrase:', options: ['"Buy now"', '"Let me recap: [needs], [solution]âready?"', '"Maybe later"', '"Let me think about it"'], answer: 1 },
       { text: 'The Trial Close phrase:', options: ['"Free trial"', '"If [timeline], would that work?"', '"Try it free"', '"Later"'], answer: 1 },
       { text: 'The Alternative Choice Close:', options: ['"Pick anything"', '"Which appeals: [Option A] or [Option B]?"', '"You choose for me"', '"No options"'], answer: 1 },
       { text: 'When customer hesitates after close:', options: ['Hang up', 'Ask "What would make you comfortable moving forward?"', 'Pressure them', 'Go silent'], answer: 1 },
@@ -2201,13 +2204,13 @@ const quizData = {
       { text: 'A customer mentions they need a fire alarm system. Which product should you recommend?', options: ['ADIVB', 'APBA (only product with fire alarm certification)', 'Office@Hand', 'Either APBA or ADIVB, whichever is cheaper'], answer: 1 },
       { text: 'Which of the following should use APBA?', options: ['General voice lines', 'Video conferencing calls', 'Fire alarm system, point of sale (POS), and elevator lines', 'All of the above'], answer: 2 },
       { text: 'What is the maximum number of lines that can connect to a single APBA device?', options: ['2 lines', 'Up to 6 lines (site survey needed for 5+)', '10 lines', 'Unlimited'], answer: 1 },
-      { text: 'How is Office@Hand licensing structured?', options: ['Per user — each user needs one license', 'Per license — one license = one phone number that can ring on multiple devices', 'Per device — each device needs its own license', 'All-you-can-use with a flat monthly fee'], answer: 1 },
+      { text: 'How is Office@Hand licensing structured?', options: ['Per user â each user needs one license', 'Per license â one license = one phone number that can ring on multiple devices', 'Per device â each device needs its own license', 'All-you-can-use with a flat monthly fee'], answer: 1 },
       { text: 'A customer wants to buy a VoIP phone for Office@Hand. What should you tell them?', options: ['They must buy from AT&T', 'They can buy from any retailer, but it must be on the AT&T CPE compatibility list', 'Any VoIP phone will work with Office@Hand', 'VoIP phones are included with Office@Hand'], answer: 1 },
       { text: 'What is QoS (Quality of Service) in the context of Office@Hand?', options: ['A monthly fee structure', 'A feature that prioritizes voice traffic over other internet traffic', 'A device that connects phones to the internet', 'An insurance coverage option'], answer: 1 },
       { text: 'When calling a customer as a closer, what should you do to reference the prior conversation?', options: ['Make it clear it\'s a new call to establish fresh context', 'Reference the appointment setter by name and mention their conversation', 'Assume they remember what was discussed before', 'Start from scratch with all discovery questions'], answer: 1 },
       { text: 'What is the MOST important step before proposing a solution?', options: ['Check the customer\'s credit score', 'Document every line and what it\'s used for', 'Send them pricing options immediately', 'Schedule the installation'], answer: 1 },
       { text: 'What is an effective urgency driver for this sales conversation?', options: ['"You need to sign today or the offer expires"', '"Your rates are subject to increase by the end of the year; this transition locks in promotional rates"', '"This is the cheapest deal you\'ll ever get"', '"Our company is going out of business soon"'], answer: 1 },
-      { text: 'When customizing an LOA template in Zoho CRM, what can you change?', options: ['The company name, signature section, and wording for clarity', 'Only the company name — do NOT change any other wording', 'Everything except the signature line', 'Nothing; you must use the exact template as-is'], answer: 1 },
+      { text: 'When customizing an LOA template in Zoho CRM, what can you change?', options: ['The company name, signature section, and wording for clarity', 'Only the company name â do NOT change any other wording', 'Everything except the signature line', 'Nothing; you must use the exact template as-is'], answer: 1 },
       { text: 'When should you remove the account number and MRC from an LOA before sending?', options: ['Always remove it to protect privacy', 'If CPNI was NOT read to the customer', 'Never remove it; it\'s required', 'Only if the customer is a small business'], answer: 1 },
       { text: 'What should you do at the START of your day as a closer?', options: ['Check your email inbox', 'Go to your HOME TAB in Zoho to see prioritized tasks, calls, and meetings', 'Call your manager to report status', 'Update your social media'], answer: 1 }
     ]
@@ -2248,22 +2251,26 @@ function logout() {
 
 // NAVIGATION
 function showPage(pageId) {
+  const targetPage = document.getElementById(pageId);
+  if (!targetPage) return;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(pageId).classList.add('active');
+  targetPage.classList.add('active');
 
-  document.querySelectorAll('.nav-item').forEach(ni => ni.classList.remove('active'));
-  // Find the nav item that targets this page and highlight it
-  const clickedNav = event && event.target ? event.target.closest('.nav-item') : null;
-  if (clickedNav) {
-    clickedNav.classList.add('active');
-  }
+  document.querySelectorAll('.nav-item').forEach(ni => {
+    if (!ni) return;
+    ni.classList.remove('active');
+    const onclickAttr = ni.getAttribute('onclick') || '';
+    if (onclickAttr.includes(pageId)) {
+      ni.classList.add('active');
+    }
+  });
 
   window.scrollTo(0, 0);
 }
 
 // QUIZ SYSTEM
 
-// Fisher-Yates shuffle — returns a new shuffled array
+// Fisher-Yates shuffle â returns a new shuffled array
 function shuffleArray(arr) {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {
@@ -2333,7 +2340,16 @@ function renderQuiz(quizId) {
     <button class="btn btn-primary" onclick="gradeQuiz('${quizId}')">Submit Quiz</button>
   </div></div>`;
 
-  contentArea.innerHTML = html;
+  // Show results in an overlay instead of destroying the DOM
+  let overlay = document.getElementById('quiz-results-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'quiz-results-overlay';
+    overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,15,30,0.95);z-index:9999;display:flex;align-items:center;justify-content:center;overflow-y:auto;padding:40px;';
+    document.body.appendChild(overlay);
+  }
+  overlay.innerHTML = html;
+  overlay.style.display = 'flex';
 }
 
 function selectOption(el, quizId, displayQIdx, displayOptIdx) {
@@ -2383,7 +2399,7 @@ function gradeQuiz(quizId) {
   const contentArea = document.querySelector('.content-area');
   let html = `<div class="results-container">
     <div class="results-card">
-      <div class="results-title">${passed ? '✓ Quiz Passed!' : '✗ Quiz Failed'}</div>
+      <div class="results-title">${passed ? 'â Quiz Passed!' : 'â Quiz Failed'}</div>
       <div class="results-score">${percentage}%</div>
       <div class="results-message ${passed ? 'pass' : 'fail'}">
         ${passed ? `Great work! You scored ${correct}/${quiz.questions.length}. Pass mark: ${quiz.passMark}%` : `You scored ${correct}/${quiz.questions.length}. Pass mark: ${quiz.passMark}%. Please review the material and try again.`}
@@ -2405,7 +2421,7 @@ function gradeQuiz(quizId) {
     </div>
   </div>`;
 
-  contentArea.innerHTML = html;
+  // Overlay handles results display
 }
 
 // PROGRESS TRACKING
@@ -2438,13 +2454,13 @@ function loadProgress() {
           <div class="progress-bar-fill" style="width: ${result.percentage}%"></div>
         </div>
         <div style="font-size: 0.85rem; color: var(--att-gray); margin-top: 8px;">
-          ${result.score}/${result.total} — ${result.passed ? 'PASSED' : 'FAILED'}
+          ${result.score}/${result.total} â ${result.passed ? 'PASSED' : 'FAILED'}
         </div>
       </div>`;
     } else {
       html += `<div class="progress-card">
         <div class="progress-label">${q.label}</div>
-        <div class="progress-value">—</div>
+        <div class="progress-value">â</div>
         <div style="color: var(--att-gray); font-size: 0.9rem;">Not attempted</div>
       </div>`;
     }
