@@ -2237,6 +2237,7 @@ function login() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app-container').style.display = 'flex';
   loadProgress();
+  loadProgressFromSupabase();
 }
 
 function logout() {
@@ -2495,26 +2496,55 @@ function loadProgress() {
   `;
 }
 
-// GOOGLE SHEETS INTEGRATION PLACEHOLDER
+// SUPABASE INTEGRATION
+const SUPABASE_URL = 'https://fcbuxllowtpkrfjrbnsa.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjYnV4bGxvd3Rwa3JmanJibnNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1ODI2NDEsImV4cCI6MjA5MDE1ODY0MX0.gqbXek5xHajxr0-V_L-fcz84UgPQfUZfpozvTeHYIP4';
+
+function supaFetch(path, opts = {}) {
+  return fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    ...opts,
+    headers: {
+      'apikey': SUPABASE_ANON,
+      'Authorization': 'Bearer ' + SUPABASE_ANON,
+      'Content-Type': 'application/json',
+      'Prefer': opts.prefer || 'return=representation',
+      ...(opts.headers || {})
+    }
+  }).catch(() => null);
+}
+
 function reportScore(agentName, quizId, score, total, passed) {
-  const WEBHOOK_URL = ''; // Will be configured later
-
-  if (!WEBHOOK_URL) return; // Silently skip if not configured
-
-  fetch(WEBHOOK_URL, {
+  const pct = Math.round((score / total) * 100);
+  supaFetch('training_quiz_results', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    prefer: 'resolution=merge-duplicates,return=representation',
     body: JSON.stringify({
-      agent: agentName,
-      training: 'Fiber',
-      quiz: quizId,
-      score: score,
-      total: total,
-      percentage: Math.round((score / total) * 100),
-      passed: passed,
-      timestamp: new Date().toISOString()
+      email: agentName,
+      name: agentName.split('@')[0].replace(/[._]/g, ' '),
+      course: 'fiber',
+      quiz_id: quizId, score: score, total: total,
+      percentage: pct, passed: passed,
+      completed_at: new Date().toISOString()
     })
-  }).catch(() => {}); // Silent fail if webhook unavailable
+  });
+}
+
+async function loadProgressFromSupabase() {
+  const agentName = localStorage.getItem('agent_name');
+  if (!agentName) return;
+  try {
+    const res = await supaFetch('training_quiz_results?email=eq.' + encodeURIComponent(agentName) + '&course=eq.fiber&select=*');
+    if (!res || !res.ok) return;
+    const rows = await res.json();
+    rows.forEach(r => {
+      const key = 'quiz_' + r.quiz_id;
+      localStorage.setItem(key, JSON.stringify({
+        score: r.score, total: r.total, percentage: r.percentage,
+        passed: r.passed, timestamp: r.completed_at
+      }));
+    });
+    loadProgress();
+  } catch(e) {}
 }
 
 // INITIALIZE
@@ -2525,6 +2555,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app-container').style.display = 'flex';
     loadProgress();
+    loadProgressFromSupabase();
   }
 
   // Enter key to login
